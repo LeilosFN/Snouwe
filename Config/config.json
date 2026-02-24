@@ -1,7 +1,7 @@
 {
     "moderators": ["852601982472421476"],
     "discord": {
-        "bot_token": "MTQ2MTg1NjMyNTcxNjY3NjY3OQ.G25UsJ.U8lzu77ZRF7PmyjpPRxPJ-omhFi0q8XU56_h0g"
+        "bot_token": ""
     },
     "mongodb": {
         "database": "mongodb://127.0.0.1/leilos_data"
@@ -10,7 +10,8 @@
         "//": "Disabling global chat can help the server to perform faster as less resources are used.",
         "EnableGlobalChat": false
     },
-    "matchmakerIP": "http://79.116.27.15:8080",
-    "gameServerIP": "http://79.116.51.74:7777",
+    "matchmakerIP": "http://launcher.leilos.qzz.io:8080",
+    "gameServerIP": "http://launcher.leilos.qzz.io:7777",
     "bEnableBattlepass": false
+
 }
