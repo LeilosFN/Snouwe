@@ -40,8 +40,8 @@ app.get("/fortnite/api/matchmaking/session/:sessionId", verifyToken, (req, res) 
     const config = JSON.parse(fs.readFileSync("./Config/config.json").toString());
 
     let gameServerInfo = {
-        serverAddress: "https://launcher.leilos.qzz.io:8443",
-        serverPort: 8443
+        serverAddress: "79.116.27.15",
+        serverPort: 7777
     }
 
     try {
@@ -107,3 +107,4 @@ app.post("/fortnite/api/matchmaking/session/matchMakingRequest", (req, res) => {
 
 
 module.exports = app;
+
