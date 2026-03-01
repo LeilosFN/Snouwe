@@ -17,7 +17,7 @@
 # Cómo instalar
 1. Clonar el repositorio
 ```bash
-git clone https://github.com/LeilosFN/backend-v2.git
+git clone https://github.com/LeilosFN/Leilos-Backend.git
 cd backend-v2-main
 ```
 2. Instalar las dependencias
