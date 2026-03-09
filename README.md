@@ -2,8 +2,6 @@
 
 > Este backend está basado en el código de LawinServerv2 y fue modificado por Crisutf.
 
-# NOTA: EL BACKEND NO ESTA AL 100% COMPLETO
-
 # Cambios y mejoras incluidas
 
 - Incluye todas las skins hasta el Capítulo 5 - Temporada 1.

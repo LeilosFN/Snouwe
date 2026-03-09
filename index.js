@@ -45,6 +45,7 @@ mongoose.connection.on("error", err => {
     throw err;
 });
 
+app.set("trust proxy", true);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(rateLimit({ windowMs: 0.5 * 60 * 1000, max: 45 }));
 app.use(express.json());

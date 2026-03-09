@@ -1,7 +1,83 @@
 {
     "Panels": [
       {
-        "PanelName": "ByEpicWoven",
+        "PanelName": "Homebar_V3",
+        "PanelDisplayName": ":D",
+        "FeatureTags": ["col:5", "homebar"],
+        "PanelType": "CuratedList",
+        "PlayHistoryType": "RecentlyPlayed",
+        "FirstPage": {
+          "results": [
+            {
+              "lastVisited": null,
+              "linkCode": "playlist_defaultsolo",
+              "isFavorite": false,
+              "globalCCU": 1
+            }
+          ],
+          "hasMore": false
+        },
+        "Pages": [
+          {
+            "results": [
+              {
+                "lastVisited": null,
+                "linkCode": "playlist_defaultsolo",
+                "isFavorite": false,
+                "globalCCU": 1
+              }
+            ],
+            "hasMore": false
+          }
+        ]
+      },
+      {
+        "PanelName": "Favorites_V3",
+        "PanelDisplayName": "FAVORITOS",
+        "FeatureTags": ["col:5", "homebar"],
+        "PanelType": "CuratedList",
+        "PlayHistoryType": "Favorites",
+        "FirstPage": {
+          "results": [
+            {
+              "lastVisited": null,
+              "linkCode": "playlist_defaultsolo",
+              "isFavorite": true,
+              "globalCCU": 1
+            }
+          ],
+          "hasMore": false
+        },
+        "Pages": [
+          {
+            "results": [
+              {
+                "lastVisited": null,
+                "linkCode": "playlist_defaultsolo",
+                "isFavorite": true,
+                "globalCCU": 1
+              }
+            ],
+            "hasMore": false
+          }
+        ]
+      },
+      {
+        "PanelName": "ByEpicNoCompetitive",
+        "PanelDisplayName": "DE EPIC",
+        "FeatureTags": ["col:5"],
+        "PanelType": "AnalyticsList",
+        "FirstPage": {
+          "results": [
+            {
+              "lastVisited": null,
+              "linkCode": "playlist_defaultsolo",
+              "isFavorite": false,
+              "globalCCU": 1
+            }
+          ],
+          "hasMore": false
+        },
         "Pages": [
           {
             "results": [
@@ -18,7 +94,7 @@
                   "creatorName": "Epic",
                   "descriptionTags": [],
                   "metadata": {
-                    "image_url": "https://cdn.projecthelix.website/Arena_Playlist.png",
+                    "image_url": "http://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
                     "matchmaking": {
                       "override_playlist": "playlist_defaultsolo"
                     }

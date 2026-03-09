@@ -118,8 +118,8 @@ function getContentPages(req) {
     try {
         if (memory.build < 5.30) { 
             news.forEach(mode => {
-                contentpages[mode].news.messages[0].image = `${baseUrl}/images/lawin/discord-s.png`;
-                contentpages[mode].news.messages[1].image = `${baseUrl}/images/lawin/lawin-s.png`;
+                contentpages[mode].news.messages[0].image = "https://api.leilos.qzz.io/images/lawin/discord-s.png";
+                contentpages[mode].news.messages[1].image = "https://api.leilos.qzz.io/images/lawin/lawin-s.png";
             });
         }
     } catch {}
@@ -173,7 +173,7 @@ function getContentPages(req) {
                 break;
             default:
                 backgrounds[0].stage = "defaultnotris";
-                backgrounds[0].backgroundimage = `${baseUrl}/images/leilos/bg1.png`;
+                backgrounds[0].backgroundimage = "https://api.leilos.qzz.io/images/leilos/bg1.png";
         }
 
         switch (memory.build) {
@@ -213,7 +213,7 @@ function getContentPages(req) {
                 backgrounds[0].backgroundimage = "https://cdn2.unrealengine.com/t-s25-14dos-lobby-4096x2048-2be24969eee3.jpg";
                 break;
             case 28.30:
-                backgrounds[0].backgroundimage = `${baseUrl}/images/leilos/bg1.png`;
+                backgrounds[0].backgroundimage = `https://api.leilos.qzz.io/images/leilos/bg1.png`;
                 break;
         }
 
