@@ -40,7 +40,7 @@ app.get("/fortnite/api/matchmaking/session/:sessionId", verifyToken, (req, res) 
     const config = JSON.parse(fs.readFileSync("./Config/config.json").toString());
 
     let gameServerInfo = {
-        serverAddress: "79.116.27.15",
+        serverAddress: "eu-mad.leilos.qzz.io",
         serverPort: 7777
     }
 

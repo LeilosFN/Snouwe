@@ -5,6 +5,7 @@ const fs = require("fs");
 const rateLimit = require("express-rate-limit");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const config = JSON.parse(fs.readFileSync("./Config/config.json").toString());
 
 const log = require("./structs/log.js");
@@ -13,8 +14,8 @@ const functions = require("./structs/functions.js");
 
 if (!fs.existsSync("./ClientSettings")) fs.mkdirSync("./ClientSettings");
 
-global.JWT_SECRET = functions.MakeID();
-const PORT = 80;
+global.JWT_SECRET = config.JWT_SECRET || functions.MakeID();
+const PORT = config.PORT || 80;
 
 const tokens = JSON.parse(fs.readFileSync("./tokenManager/tokens.json").toString());
 
@@ -46,6 +47,7 @@ mongoose.connection.on("error", err => {
 });
 
 app.set("trust proxy", true);
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(rateLimit({ windowMs: 0.5 * 60 * 1000, max: 45 }));
 app.use(express.json());

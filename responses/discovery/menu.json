@@ -10,9 +10,21 @@
           "results": [
             {
               "lastVisited": null,
+              "linkCode": "welcome_banner",
+              "isFavorite": false,
+              "globalCCU": 1,
+              "lockStatus": "UNLOCKED",
+              "lockStatusReason": "NONE",
+              "isVisible": true
+            },
+            {
+              "lastVisited": null,
               "linkCode": "playlist_defaultsolo",
               "isFavorite": false,
-              "globalCCU": 1
+              "globalCCU": 1,
+              "lockStatus": "UNLOCKED",
+              "lockStatusReason": "NONE",
+              "isVisible": true
             }
           ],
           "hasMore": false
@@ -22,9 +34,21 @@
             "results": [
               {
                 "lastVisited": null,
+                "linkCode": "welcome_banner",
+                "isFavorite": false,
+                "globalCCU": 1,
+                "lockStatus": "UNLOCKED",
+                "lockStatusReason": "NONE",
+                "isVisible": true
+              },
+              {
+                "lastVisited": null,
                 "linkCode": "playlist_defaultsolo",
                 "isFavorite": false,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "UNLOCKED",
+                "lockStatusReason": "NONE",
+                "isVisible": true
               }
             ],
             "hasMore": false
@@ -55,7 +79,10 @@
                 "lastVisited": null,
                 "linkCode": "playlist_defaultsolo",
                 "isFavorite": true,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "UNLOCKED",
+                "lockStatusReason": "NONE",
+                "isVisible": true
               }
             ],
             "hasMore": false
@@ -71,6 +98,12 @@
           "results": [
             {
               "lastVisited": null,
+              "linkCode": "welcome_banner",
+              "isFavorite": false,
+              "globalCCU": 1
+            },
+            {
+              "lastVisited": null,
               "linkCode": "playlist_defaultsolo",
               "isFavorite": false,
               "globalCCU": 1
@@ -84,17 +117,48 @@
               {
                 "linkData": {
                   "namespace": "fn",
+                  "mnemonic": "welcome_banner",
+                  "linkType": "External",
+                  "active": true,
+                  "disabled": false,
+                  "lockStatus": "UNLOCKED",
+                  "lockStatusReason": "NONE",
+                  "isVisible": true,
+                  "version": 1,
+                  "moderationStatus": "Approved",
+                  "accountId": "epic",
+                  "creatorName": "Epic",
+                  "descriptionTags": [],
+                  "metadata": {
+                    "age_rating_index": 0,
+                    "image_url": "https://cdn.leilos.qzz.io/public/media/images/logo/background.jpg",
+                    "title": "Crisutf",
+                    "tagline": "Disfruta de la mejor experiencia en nuestro servidor privado."
+                  }
+                },
+                "lastVisited": null,
+                "linkCode": "welcome_banner",
+                "isFavorite": false
+              },
+              {
+                "linkData": {
+                  "namespace": "fn",
                   "mnemonic": "playlist_defaultsolo",
                   "linkType": "BR:Playlist",
                   "active": true,
                   "disabled": false,
+                  "lockStatus": "UNLOCKED",
+                  "lockStatusReason": "NONE",
+                  "isVisible": true,
                   "version": 95,
                   "moderationStatus": "Unmoderated",
                   "accountId": "epic",
                   "creatorName": "Epic",
                   "descriptionTags": [],
                   "metadata": {
-                    "image_url": "http://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                    "age_rating_index": 0,
+                    "image_url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                    "title": "Solo",
                     "matchmaking": {
                       "override_playlist": "playlist_defaultsolo"
                     }

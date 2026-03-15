@@ -34,7 +34,7 @@ app.get("/launcher/api/public/assets/*", async (req, res) => {
     res.json({
         "appName": "FortniteContentBuilds",
         "labelName": "LawinServer",
-        "buildVersion": "++Fortnite+Release-20.00-CL-19458861-Windows",
+        "buildVersion": "++Fortnite+Release-28.30-CL-19458861-Windows",
         "catalogItemId": "5cb97847cee34581afdbc445400e2f77",
         "expires": "9999-12-31T23:59:59.999Z",
         "items": {

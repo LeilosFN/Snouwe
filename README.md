@@ -14,10 +14,14 @@
 
 - Se añadió la opción de marcar como "Listo" (aunque actualmente no inicia partida, ya que no se pudieron implementar los modos de juego).
 
+- Panel de control donde el usuario controla de forma visual su cuenta, y si es admin incluido el control de banear y expulsar a otros usuarios.
+
+- El bot te notificara cuando te banean y por que y encima se puede apelar.
+
 # Cómo instalar
 1. Clonar el repositorio
 ```bash
-git clone https://github.com/LeilosFN/Leilos-Backend.git
+git clone https://github.com/LeilosFN/Backend.git
 cd backend-v2-main
 ```
 2. Instalar las dependencias
@@ -38,7 +42,7 @@ Y coloca tu token de Discord dentro de las comillas.
 
 4. Cambiar la IP
 
-Modifica la IP **79.116.27.15** por tu propia IP, ya que es la dirección a la que se conectará el backend.
+Modifica la URL **api.leilos.qzz.io** por tu propia IP, ya que es la dirección a la que se conectará el backend.
 
 5. Iniciar el backend
 

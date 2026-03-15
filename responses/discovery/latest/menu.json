@@ -3,6 +3,40 @@
         "namespace": "fn",
         "accountId": "epic",
         "creatorName": "Epic",
+        "mnemonic": "welcome_banner",
+        "linkType": "External",
+        "metadata": {
+            "age_rating_index": 0,
+            "image_url": "https://cdn.leilos.qzz.io/public/media/images/logo/background.jpg",
+            "image_urls": {
+                "url_s": "https://cdn.leilos.qzz.io/public/media/images/logo/background.jpg",
+                "url_xs": "https://cdn.leilos.qzz.io/public/media/images/logo/background.jpg",
+                "url_m": "https://cdn.leilos.qzz.io/public/media/images/logo/background.jpg",
+                "url": "https://cdn.leilos.qzz.io/public/media/images/logo/background.jpg"
+            },
+            "title": "Leilos",
+            "tagline": "Disfruta de la mejor experiencia en nuestro servidor privado.",
+            "alt_title": {
+                "es": "Leilos",
+                "en": "Leilos"
+            }
+        },
+        "version": 1,
+        "active": true,
+        "disabled": false,
+        "lockStatus": "UNLOCKED",
+        "lockStatusReason": "NONE",
+        "isVisible": true,
+        "created": "2024-01-01T00:00:00.000Z",
+        "published": "2024-01-01T00:00:00.000Z",
+        "descriptionTags": [],
+        "moderationStatus": "Approved",
+        "discoveryIntent": "PUBLIC"
+    },
+    {
+        "namespace": "fn",
+        "accountId": "epic",
+        "creatorName": "Epic",
         "mnemonic": "reference_byepicnocompetitive_5",
         "linkType": "Reference",
         "metadata": {
@@ -30,6 +64,7 @@
         "mnemonic": "playlist_defaultsolo",
         "linkType": "BR:Playlist",
         "metadata": {
+            "age_rating_index": 0,
             "parent_set": "set_br_playlists",
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
@@ -42,23 +77,23 @@
                 "it": "Singolo",
                 "fr": "Solo",
                 "zh-CN": "",
-                "es": "En solitario",
-                "es-MX": "En solitario",
+                "es": "SOLO",
+                "es-MX": "SOLO",
                 "zh": "",
                 "ar": "فردي",
                 "zh-Hant": "",
                 "ja": "ソロ",
                 "pl": "Solo",
-                "es-419": "En solitario",
+                "es-419": "SOLO",
                 "tr": "Tekli"
             },
-            "image_url": "https://cdn2.unrealengine.com/28br-solo-640x360-25621afebbce.jpg",
+            "image_url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
             "product_tag": "Product.BR.Build.Solo",
             "image_urls": {
-                "url_s": "https://cdn2.unrealengine.com/28br-solo-640x360-25621afebbce.jpg",
-                "url_xs": "https://cdn2.unrealengine.com/28br-solo-640x360-25621afebbce.jpg",
-                "url_m": "https://cdn2.unrealengine.com/28br-solo-640x360-25621afebbce.jpg",
-                "url": "https://cdn2.unrealengine.com/28br-solo-640x360-25621afebbce.jpg"
+                "url_s": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                "url_xs": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                "url_m": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                "url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_defaultsolo"
@@ -69,10 +104,14 @@
         "version": 95,
         "active": true,
         "disabled": false,
+        "lockStatus": "UNLOCKED",
+        "lockStatusReason": "NONE",
+        "isVisible": true,
         "created": "2021-10-01T00:56:43.870Z",
         "published": "2023-11-03T08:26:11.189Z",
         "descriptionTags": [],
-        "moderationStatus": "Unmoderated"
+        "moderationStatus": "Unmoderated",
+        "discoveryIntent": "PUBLIC"
     },
     {
         "namespace": "fn",
@@ -81,12 +120,12 @@
         "mnemonic": "set_br_playlists",
         "linkType": "ModeSet",
         "metadata": {
-            "image_url": "https://static-assets-prod.s3.amazonaws.com/fn/static/1p/28BR_Launch1920_v2.jpg",
+            "image_url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
             "image_urls": {
-                "url_s": "https://static-assets-prod.s3.amazonaws.com/fn/static/1p/28BR_Launch480_v2_s.jpg",
-                "url_xs": "https://static-assets-prod.s3.amazonaws.com/fn/static/1p/28BR_Launch256_v2_s.jpg",
-                "url_m": "https://static-assets-prod.s3.amazonaws.com/fn/static/1p/28BR_Launch640_v2_s.jpg",
-                "url": "https://static-assets-prod.s3.amazonaws.com/fn/static/1p/28BR_Launch1920_v2.jpg"
+                "url_s": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                "url_xs": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                "url_m": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+                "url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png"
             },
             "title": "Battle Royale",
             "locale": "en",
@@ -116,7 +155,7 @@
                 "de": "Überlebe allein in einer Schlacht bis auf den letzten Spieler.",
                 "ru": "Отправляйтесь на битву в одиночку и переживите всех соперников.",
                 "ko": "죽느냐 사느냐... 혼자서 싸우는 서바이벌 혈투!",
-                "pt-BR": "Entre sozinho em uma batalha para ser o último sobrevivente.",
+                "pt-BR": "Entre sozinho em uma batalla para ser o último sobrevivente.",
                 "it": "Combatti in solitaria fino a diventare l'ultimo superstite.",
                 "fr": "Combattez en solitaire et soyez le dernier survivant.",
                 "zh-CN": "",

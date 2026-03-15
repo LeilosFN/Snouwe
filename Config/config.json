@@ -1,7 +1,13 @@
 {
+    "PORT": 80,
+    "JWT_SECRET": "supersecretleiloskey",
+    "VERSION": "28.30",
     "moderators": ["852601982472421476"],
     "discord": {
-        "bot_token": ""
+        "bot_token": "MTQ2MTg1NjMyNTcxNjY3NjY3OQ.GT4tKI.3iDHM33cnoxn6HbiJcvTRkTs9AEm8o12yeDNwA",
+        "client_id": "1461856325716676679",
+        "client_secret": "u-2FneJBOmrZ3TuHVD8WeuKYy6wbA-Vd",
+        "redirect_uri": "https://api.leilos.qzz.io/api/v2/discord/callback"
     },
     "mongodb": {
         "database": "mongodb://127.0.0.1/leilos_data"
@@ -10,9 +16,7 @@
         "//": "Disabling global chat can help the server to perform faster as less resources are used.",
         "EnableGlobalChat": false
     },
-    "matchmakerIP": "79.116.27.15:8080",
-    "gameServerIP": "79.116.27.15:7777",
+    "matchmakerIP": "api.leilos.qzz.io:8080",
+    "gameServerIP": "api.leilos.qzz.io:7777",
     "bEnableBattlepass": false
-
 }
-

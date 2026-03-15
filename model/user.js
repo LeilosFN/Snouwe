@@ -9,7 +9,13 @@ const UserSchema = new mongoose.Schema(
         username: { type: String, required: true, unique: true },
         username_lower: { type: String, required: true, unique: true },
         email: { type: String, required: true, unique: true },
-        password: { type: String, required: true }
+        password: { type: String, required: true },
+        avatar: { type: String, default: "" },
+        banReason: { type: String, default: "" },
+        lastLogin: { type: Date, default: Date.now },
+        isAdmin: { type: Boolean, default: false },
+        isWhitelisted: { type: Boolean, default: false },
+        lastIp: { type: String, default: "" }
     },
     {
         collection: "users"

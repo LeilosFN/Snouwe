@@ -5,37 +5,37 @@
     "mnemonic": "set_br_playlists",
     "linkType": "ModeSet",
     "metadata": {
-        "image_url": "https://cdn.projecthelix.website/Arena_Playlist.png",
+        "image_url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
         "image_urls": {
-            "url_s": "https://cdn.projecthelix.website/Arena_Playlist.png",
-            "url_xs": "https://cdn.projecthelix.website/Arena_Playlist.png",
-            "url_m": "https://cdn.projecthelix.website/Arena_Playlist.png",
-            "url": "https://cdn.projecthelix.website/Arena_Playlist.png"
+            "url_s": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+            "url_xs": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+            "url_m": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+            "url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png"
         },
         "title": "Battle Royale",
         "locale": "en",
         "video_vuid": "CaGHsWoMJxMGUDasbB",
         "sub_link_codes": [
-            "playlist_defaultsolo"
-        ],
-        "alt_title": {
-            "de": "Battle Royale",
-            "ru": "Королевская битва",
-            "ko": "배틀로얄",
-            "pt-BR": "Battle Royale",
-            "it": "Battaglia reale",
-            "fr": "Battle Royale",
-            "zh-CN": "",
-            "es": "Battle Royale",
-            "es-MX": "Batalla campal",
-            "zh": "",
-            "ar": "باتل رويال",
-            "zh-Hant": "",
-            "ja": "バトルロイヤル",
-            "pl": "Battle Royale",
-            "es-419": "Batalla campal",
-            "tr": "Battle Royale"
-        },
+                "playlist_defaultsolo"
+            ],
+            "alt_title": {
+                "de": "Battle Royale",
+                "ru": "Королевская битва",
+                "ko": "배틀로얄",
+                "pt-BR": "Battle Royale",
+                "it": "Battaglia reale",
+                "fr": "Battle Royale",
+                "zh-CN": "",
+                "es": "Battle Royale",
+                "es-MX": "Batalla campal",
+                "zh": "",
+                "ar": "باتل رويال",
+                "zh-Hant": "",
+                "ja": "バトルロイヤル",
+                "pl": "Battle Royale",
+                "es-419": "Batalla campal",
+                "tr": "Battle Royale"
+            },
         "alt_tagline": {
             "de": "Überlebe allein in einer Schlacht bis auf den letzten Spieler.",
             "ru": "Отправляйтесь на битву в одиночку и переживите всех соперников.",

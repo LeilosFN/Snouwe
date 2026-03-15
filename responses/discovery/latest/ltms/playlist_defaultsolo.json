@@ -17,23 +17,23 @@
             "it": "Singolo",
             "fr": "Solo",
             "zh-CN": "",
-            "es": "En solitario",
-            "es-MX": "En solitario",
+            "es": "SOLO",
+            "es-MX": "SOLO",
             "zh": "",
             "ar": "فردي",
             "zh-Hant": "",
             "ja": "ソロ",
             "pl": "Solo",
-            "es-419": "En solitario",
+            "es-419": "SOLO",
             "tr": "Tekli"
         },
-        "image_url": "https://cdn.projecthelix.website/Arena_Playlist.png",
+        "image_url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
         "product_tag": "Product.BR.Build.Solo",
         "image_urls": {
-            "url_s": "https://cdn.projecthelix.website/Arena_Playlist.png",
-            "url_xs": "https://cdn.projecthelix.website/Arena_Playlist.png",
-            "url_m": "https://cdn.projecthelix.website/Arena_Playlist.png",
-            "url": "https://cdn.projecthelix.website/Arena_Playlist.png"
+            "url_s": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+            "url_xs": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+            "url_m": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+            "url": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png"
         },
         "matchmaking": {
             "override_playlist": "playlist_defaultsolo"

@@ -36,7 +36,7 @@
     "overrideablemessage": {
       "_type": "CommonUI Simple Message",
       "message": {
-        "image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+        "image": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
         "hidden": false,
         "_type": "CommonUI Simple Message Base",
         "adspace": "ENJOY!",
@@ -212,7 +212,7 @@
       "_type": "Battle Royale News",
       "messages": [
         {
-          "image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+          "image": "https://cdn.leilos.qzz.io/public/media/images/lobby/background_2048.png",
           "hidden": false,
           "_type": "CommonUI Simple Message Base",
           "adspace": "DISCORD!",
@@ -221,7 +221,7 @@
           "spotlight": false
         },
         {
-          "image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+          "image": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
           "hidden": false,
           "_type": "CommonUI Simple Message Base",
           "adspace": "ENJOY!",
@@ -284,7 +284,7 @@
       "_type": "Playlist Information",
       "playlists": [
         {
-          "image": "https://api.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+          "image": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
           "playlist_name": "Playlist_DefaultSolo",
           "hidden": false,
           "special_border": "None",
@@ -310,10 +310,10 @@
       "tournaments": [
         {
           "title_color": "FFFFFF",
-          "loading_screen_image": "https://api.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+          "loading_screen_image": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
           "background_text_color": "1B1B1B",
           "background_right_color": "DD091A",
-          "poster_back_image": "https://api.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+          "poster_back_image": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
           "_type": "Tournament Display Info",
           "pin_earned_text": ":D",
           "tournament_display_id": "ArenaSolo",
@@ -321,7 +321,7 @@
           "schedule_info": "February 1st, 2nd & 3rd: 2pm - 5pm JST",
           "primary_color": "FFFFFF",
           "flavor_description": "cool",
-          "poster_front_image": "https://api.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+          "poster_front_image": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
           "short_format_title": "Event Sessions",
           "title_line_1": "Lategame Arena",
           "shadow_color": "1B1B1B",
@@ -330,15 +330,15 @@
           "long_format_title": "title text here",
           "poster_fade_color": "DD091A",
           "secondary_color": "1B1B1B",
-          "playlist_tile_image": "https://api.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
+          "playlist_tile_image": "https://cdn.leilos.qzz.io/public/media/images/gamemodes/Arena_Playlist.png",
           "base_color": "FFFFFF"
         },
         {
           "title_color": "000000",
-          "loading_screen_image": "https://api.leilos.qzz.io/public/media/images/leilos/bg1.png",
+          "loading_screen_image": "https://cdn.leilos.qzz.io/public/media/images/lobby/background_2048.png",
           "background_text_color": "00A2FF",
           "background_right_color": "00A2FF",
-          "poster_back_image": "https://api.leilos.qzz.io/public/media/images/leilos/bg1.png",
+          "poster_back_image": "https://cdn.leilos.qzz.io/public/media/images/lobby/background_2048.png",
           "_type": "Tournament Display Info",
           "pin_earned_text": "Benzi is the winner!",
           "tournament_display_id": "ArenaSolo",
@@ -346,7 +346,7 @@
           "schedule_info": "Jan 1st",
           "primary_color": "000000",
           "flavor_description": "",
-          "poster_front_image": "https://api.leilos.qzz.io/public/media/images/leilos/bg1.png",
+          "poster_front_image": "https://cdn.leilos.qzz.io/public/media/images/lobby/background_2048.png",
           "short_format_title": "Event Sessions",
           "title_line_1": "Lategame Arena",
           "shadow_color": "00A2FF",
@@ -355,7 +355,7 @@
           "long_format_title": "",
           "poster_fade_color": "00A2FF",
           "secondary_color": "00A2FF",
-          "playlist_tile_image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+          "playlist_tile_image": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
           "base_color": "FFFFFF"
         }
       ],
@@ -5385,7 +5385,7 @@
     "_locale": "en-US"
   },
   "lobby": {
-    "backgroundimage": "http://79.116.27.15/images/lawin/seasonx.png",
+    "backgroundimage": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
     "stage": "seasonx",
     "_title": "lobby",
     "_activeDate": "2019-05-31T21:24:39.892Z",
@@ -5398,8 +5398,8 @@
       "motds": [
         {
           "entryType": "Website",
-          "image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
-          "tileImage": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+          "image": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
+          "tileImage": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
           "videoMute": false,
           "hidden": false,
           "tabTitleOverride": "LEILOS :]",
@@ -5436,7 +5436,7 @@
       ],
       "messages": [
         {
-          "image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+          "image": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
           "hidden": false,
           "_type": "CommonUI Simple Message Base",
           "adspace": "ENJOY!",
@@ -5512,7 +5512,7 @@
       "_type": "Battle Royale News",
       "messages": [
         {
-          "image": "https://api.leilos.qzz.io/images/leilos/bg1.png",
+          "image": "https://cdn.leilos.qzz.io/public/media/images/logo/Fort_Load_SeasonKeyArt.png",
           "hidden": false,
           "_type": "CommonUI Simple Message Base",
           "adspace": "ENJOY!",
