@@ -11,17 +11,278 @@ const discordBot = require('../DiscordBot/index.js'); // Importar el bot
 
 const router = express.Router();
 
+// Almacén temporal de códigos para el launcher (en memoria)
+if (!global.launcherCodes) global.launcherCodes = new Map();
+
 // 1. Iniciar sesión con Discord
 router.get('/api/v2/discord/login', (req, res) => {
   const clientId = config.discord.client_id;
   const redirectUri = encodeURIComponent(config.discord.redirect_uri);
-  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=identify%20email`;
+  const state = req.query.state || 'web';
+  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=identify%20email&state=${state}`;
   res.redirect(url);
+});
+
+// 1.1 Iniciar sesión específico para el Launcher (Manual ID)
+router.get('/api/launcher/login', (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <title>Leilos Launcher | Login</title>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&display=swap');
+          :root {
+            --primary: #D4AF37;
+            --bg-dark: #050505;
+            --bg-card: #0a0a0a;
+            --text-main: #ffffff;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --border: rgba(212, 175, 55, 0.2);
+          }
+          body { 
+            font-family: 'Rajdhani', sans-serif; 
+            background: var(--bg-dark); 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+            text-align: center;
+          }
+          .card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            position: relative;
+            max-width: 400px;
+            width: 90%;
+          }
+          .card:after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--gold-gradient);
+          }
+          h1 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; }
+          .input-group { text-align: left; margin-bottom: 1.5rem; }
+          input { 
+            width: 100%; padding: 14px; border-radius: 4px; border: 1px solid var(--border); 
+            background: #000; color: white; box-sizing: border-box; font-family: inherit; font-size: 1rem;
+          }
+          button { 
+            width: 100%; padding: 16px; border: none; border-radius: 4px; 
+            background: var(--gold-gradient); color: #000; font-family: 'Orbitron', sans-serif; 
+            font-weight: 800; cursor: pointer; text-transform: uppercase;
+          }
+          .error { color: #ff4444; font-size: 0.9rem; margin-top: 10px; }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <h1>INICIAR SESIÓN</h1>
+          <form action="/api/launcher/login" method="POST">
+            <div class="input-group">
+              <input type="text" name="discordId" placeholder="Introduce tu ID de Usuario" required>
+            </div>
+            <button type="submit">ACCEDER</button>
+            ${req.query.error ? '<div class="error">Usuario no encontrado o no registrado.</div>' : ''}
+          </form>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
+router.post('/api/launcher/login', async (req, res) => {
+  const { discordId } = req.body;
+  if (!discordId) return res.redirect('/api/launcher/login?error=1');
+
+  const user = await User.findOne({ discordId });
+  if (!user) return res.redirect('/api/launcher/login?error=1');
+
+  // Si existe, lo mandamos a la página de confirmación como antes
+  res.redirect(`/api/launcher/confirm-view?id=${user.discordId}`);
+});
+
+// Nueva vista de confirmación tras poner el ID manual
+router.get('/api/launcher/confirm-view', async (req, res) => {
+  const { id } = req.query;
+  const user = await User.findOne({ discordId: id });
+  if (!user) return res.redirect('/api/launcher/login?error=1');
+
+  const avatarUrl = user.avatar 
+    ? `https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png` 
+    : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discordId) % 5}.png`;
+
+  res.send(`
+    <html>
+      <head>
+        <title>Leilos Launcher | Confirmar</title>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&display=swap');
+          :root {
+            --primary: #D4AF37;
+            --bg-dark: #050505;
+            --bg-card: #0a0a0a;
+            --text-main: #ffffff;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --border: rgba(212, 175, 55, 0.2);
+          }
+          body { 
+            font-family: 'Rajdhani', sans-serif; 
+            background: var(--bg-dark); 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+            text-align: center;
+          }
+          .card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            position: relative;
+          }
+          .card:after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--gold-gradient);
+          }
+          .avatar {
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 3px solid var(--primary);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+          }
+          h1 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+          .user-id { 
+            font-family: 'Orbitron', sans-serif; background: rgba(0,0,0,0.5); padding: 12px 24px; border-radius: 4px; 
+            color: var(--primary); margin: 1.5rem 0; display: inline-block; border: 1px solid var(--border);
+            font-size: 1.2rem; letter-spacing: 2px;
+          }
+          button {
+            display: block; width: 100%; padding: 16px; margin-top: 1rem;
+            background: var(--gold-gradient); color: #000;
+            font-family: 'Orbitron', sans-serif; font-weight: 800; text-transform: uppercase;
+            border: none; border-radius: 4px; cursor: pointer;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <img class="avatar" src="${avatarUrl}" />
+          <h1>¡BIENVENIDO, ${user.username.toUpperCase()}!</h1>
+          <p>Cuenta vinculada correctamente.</p>
+          <div class="user-id">${user.username}</div>
+          <button onclick="confirmLogin()">CONFIRMAR Y ENTRAR</button>
+        </div>
+        <script>
+          function confirmLogin() {
+            // El launcher leerá el título para obtener el nombre
+            document.title = "${user.username}";
+            console.log("LOGIN_SUCCESS:${user.username}");
+            
+            const btn = document.querySelector('button');
+            btn.innerText = "¡CONECTADO!";
+            btn.disabled = true;
+
+            setTimeout(() => window.close(), 1500);
+          }
+        </script>
+      </body>
+    </html>
+  `);
+});
+
+// 1.2 Generar código de intercambio para el Launcher (Mantenemos por si el launcher lo prefiere)
+router.get('/api/launcher/confirm', async (req, res) => {
+  const { id } = req.query;
+  const sessionUser = req.cookies?.leilos_session;
+
+  if (!id || sessionUser !== id) return res.status(401).send('Sesión no válida.');
+
+  const user = await User.findOne({ discordId: id });
+  if (!user) return res.status(404).send('Usuario no encontrado.');
+
+  // Generamos un código único de un solo uso
+  const exchangeCode = uuidv4();
+  
+  // Guardamos el código asociado al nombre de usuario por 5 minutos
+  global.launcherCodes.set(exchangeCode, {
+    username: user.username,
+    discordId: user.discordId,
+    expires: Date.now() + (5 * 60 * 1000)
+  });
+
+  // Redirigimos a una URL final que el launcher puede interceptar fácilmente
+  // Formato: https://api.leilos.qzz.io/api/launcher/success?code=UUID
+  res.redirect(`/api/launcher/success?code=${exchangeCode}`);
+});
+
+// 1.3 Página final de éxito (donde llega el launcher)
+router.get('/api/launcher/success', (req, res) => {
+  const { code } = req.query;
+  res.send(`
+    <html>
+      <head>
+        <title>LOGIN_SUCCESS:${code}</title>
+        <style>
+          body { background: #050505; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+          .msg { text-align: center; border: 1px solid #D4AF37; padding: 20px; border-radius: 8px; }
+        </style>
+      </head>
+      <body>
+        <div class="msg">
+          <h2 style="color: #D4AF37;">¡CONECTADO!</h2>
+          <p>El launcher está procesando tu entrada...</p>
+          <code style="background: #000; padding: 5px;">${code}</code>
+        </div>
+        <script>
+          // Mandamos el código por consola también
+          console.log("EXCHANGE_CODE:${code}");
+          // Cerramos en 3 segundos si no se ha cerrado antes
+          setTimeout(() => window.close(), 3000);
+        </script>
+      </body>
+    </html>
+  `);
+});
+
+// 1.4 Endpoint que el launcher llama para canjear el código
+router.get('/api/launcher/verify', (req, res) => {
+  const { code } = req.query;
+  
+  if (!code || !global.launcherCodes.has(code)) {
+    return res.status(400).json({ status: 'error', message: 'Código inválido o expirado.' });
+  }
+
+  const data = global.launcherCodes.get(code);
+  
+  // Verificar expiración
+  if (Date.now() > data.expires) {
+    global.launcherCodes.delete(code);
+    return res.status(400).json({ status: 'error', message: 'El código ha expirado.' });
+  }
+
+  // Borramos el código para que sea de UN SOLO USO
+  global.launcherCodes.delete(code);
+
+  // Devolvemos el nombre de usuario que el launcher necesita
+  res.json({
+    status: 'success',
+    username: data.username,
+    discordId: data.discordId,
+    email: `${data.username}@leilos.tf`
+  });
 });
 
 // 2. Callback de Discord
 router.get('/api/v2/discord/callback', async (req, res) => {
-  const { code } = req.query;
+  const { code, state } = req.query;
   if (!code) return res.status(400).send('No se recibió código de Discord.');
 
   try {
@@ -38,6 +299,9 @@ router.get('/api/v2/discord/callback', async (req, res) => {
     });
 
     const discordUser = userResponse.data;
+    const avatarUrl = discordUser.avatar 
+        ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png` 
+        : 'https://cdn.discordapp.com/embed/avatars/0.png';
 
     // Guardar sesión en cookie (seguridad mejorada)
     res.cookie('leilos_session', discordUser.id, { 
@@ -68,241 +332,29 @@ router.get('/api/v2/discord/callback', async (req, res) => {
     let user = await User.findOne({ discordId: discordUser.id });
 
     if (!user || !user.username || !user.created) {
-      // Si no existe o está incompleto, mostrar formulario para elegir contraseña
-      return res.send(`
-        <html>
-          <head>
-            <title>Registro Leilos | Proyecto de ${discordUser.username}</title>
-            <style>
-              @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&display=swap');
-              
-              :root {
-                --primary: #D4AF37;
-                --primary-hover: #F5Edc3;
-                --bg-dark: #050505;
-                --bg-card: #0a0a0a;
-                --text-main: #ffffff;
-                --text-muted: #b8b8b8;
-                --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-                --border: rgba(212, 175, 55, 0.2);
-              }
+      // Si no existe o está incompleto, crear automáticamente con contraseña 1234567890
+      const moderators = config.moderators || [];
+      const isAdmin = moderators.includes(discordUser.id) || isHighRole;
 
-              body { 
-                font-family: 'Rajdhani', sans-serif; 
-                background: var(--bg-dark); 
-                color: var(--text-main); 
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                min-height: 100vh; 
-                margin: 0; 
-                overflow-y: auto;
-                overflow-x: hidden;
-                position: relative;
-                padding: 20px 0;
-              }
+      // Si ya existía uno incompleto o corrupto, lo eliminamos
+      await User.deleteOne({ discordId: discordUser.id });
 
-              body:before {
-                content: "";
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-                pointer-events: none;
-                z-index: -1;
-              }
+      const resp = await functions.registerUser(discordUser.id, discordUser.username);
 
-              * { scrollbar-width: thin; scrollbar-color: var(--primary) var(--bg-dark); }
-              ::-webkit-scrollbar { width: 12px; }
-              ::-webkit-scrollbar-track { background: var(--bg-dark); }
-              ::-webkit-scrollbar-thumb { background-color: var(--primary); border-radius: 6px; border: 3px solid var(--bg-dark); }
-              ::-webkit-scrollbar-thumb:hover { background-color: var(--primary-hover); }
+      if (resp.status >= 400) {
+        return res.status(resp.status).send(resp.message);
+      }
 
-              .container {
-                position: relative;
-                width: 100%;
-                max-width: 400px;
-                z-index: 1;
-                padding: 20px;
-                margin: auto;
-              }
+      // Actualizamos avatar e isAdmin
+      await User.updateOne({ discordId: discordUser.id }, { 
+        avatar: discordUser.avatar || '', 
+        isAdmin, 
+        isWhitelisted: isAdmin,
+        lastIp: req.ip,
+        lastLogin: new Date()
+      });
 
-              .card { 
-                background: var(--bg-card); 
-                padding: 2.5rem; 
-                border-radius: 8px; 
-                border: 1px solid var(--border); 
-                text-align: center; 
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-                backdrop-filter: blur(10px);
-                position: relative;
-                overflow: hidden;
-              }
-
-              .card:after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background: var(--gold-gradient);
-                transform: scaleX(1);
-              }
-
-              .brand {
-                font-family: 'Orbitron', sans-serif;
-                font-weight: 800;
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-                color: var(--primary);
-                margin-bottom: 0.5rem;
-                text-transform: uppercase;
-                text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-              }
-
-              h2 { font-family: 'Orbitron', sans-serif; font-weight: 600; margin-bottom: 0.5rem; font-size: 1.2rem; text-transform: uppercase; }
-              
-              .info { 
-                color: var(--text-muted); 
-                font-size: 0.9rem; 
-                margin-bottom: 2rem; 
-                background: rgba(255, 255, 255, 0.03);
-                padding: 8px;
-                border-radius: 4px;
-                display: inline-block;
-                border: 1px solid var(--border);
-              }
-
-              .input-group {
-                text-align: left;
-                margin-bottom: 1.5rem;
-              }
-
-              label {
-                display: block;
-                font-size: 0.8rem;
-                color: var(--text-muted);
-                margin-bottom: 0.5rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-              }
-
-              input { 
-                width: 100%; 
-                padding: 14px 18px; 
-                border-radius: 4px; 
-                border: 1px solid var(--border); 
-                background: #050505; 
-                color: white; 
-                box-sizing: border-box; 
-                font-family: inherit;
-                font-size: 1rem;
-                transition: all 0.3s ease;
-              }
-
-              input:focus {
-                outline: none;
-                border-color: var(--primary);
-                box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-              }
-
-              button { 
-                width: 100%; 
-                padding: 16px; 
-                border: 2px solid var(--primary); 
-                border-radius: 4px; 
-                background: transparent; 
-                color: var(--primary); 
-                font-family: 'Orbitron', sans-serif;
-                font-weight: 600; 
-                font-size: 1rem;
-                cursor: pointer; 
-                transition: all 0.3s ease;
-                margin-top: 1rem;
-                text-transform: uppercase;
-                position: relative;
-                overflow: hidden;
-                z-index: 1;
-              }
-
-              button:before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 0%;
-                height: 100%;
-                background: var(--primary);
-                transition: width 0.3s ease;
-                z-index: -1;
-              }
-
-              button:hover {
-                color: var(--bg-dark);
-                box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-              }
-
-              button:hover:before {
-                width: 100%;
-              }
-
-              .high-role-badge { 
-                background: var(--gold-gradient); 
-                color: #000; 
-                padding: 6px 14px; 
-                border-radius: 4px; 
-                font-size: 0.7rem; 
-                display: inline-block; 
-                margin-bottom: 1.5rem; 
-                font-weight: 800;
-                font-family: 'Orbitron', sans-serif;
-              }
-
-              .avatar {
-                width: 64px;
-                height: 64px;
-                border-radius: 50%;
-                margin-bottom: 1rem;
-                border: 2px solid var(--primary);
-                box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="card">
-                <div class="brand">LEILOS</div>
-                <img class="avatar" src="${discordUser.avatar ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}" />
-                ${isHighRole ? '<div class="high-role-badge">⭐ ROL ALTO</div>' : ''}
-                <h2>Finalizar Registro</h2>
-                <div class="info">ID: <b>${discordUser.id}</b></div>
-                
-                <form action="/api/v2/discord/register" method="POST">
-                  <input type="hidden" name="discordId" value="${discordUser.id}">
-                  <input type="hidden" name="username" value="${discordUser.username}">
-                  <input type="hidden" name="avatar" value="${discordUser.avatar || ''}">
-                  <input type="hidden" name="isHighRole" value="${isHighRole}">
-                  
-                  <div class="input-group">
-                    <label>Tu Correo Leilos</label>
-                    <input type="text" value="${email}" disabled style="color: #555; cursor: not-allowed;">
-                  </div>
-
-                  <div class="input-group">
-                    <label>Contraseña de Acceso</label>
-                    <input type="password" name="password" placeholder="Mínimo 6 caracteres" required minlength="6">
-                  </div>
-
-                  <button type="submit">Crear Mi Cuenta</button>
-                </form>
-              </div>
-            </div>
-          </body>
-        </html>
-      `);
+      user = await User.findOne({ discordId: discordUser.id });
     } else {
       // Si el usuario existe, actualizar su avatar e IP
       await User.updateOne({ discordId: discordUser.id }, { 
@@ -312,7 +364,103 @@ router.get('/api/v2/discord/callback', async (req, res) => {
       });
     }
 
-    // Si ya existe, redirigir al Dashboard
+    // --- Lógica de Respuesta según el State ---
+    if (state === 'launcher') {
+      // Respuesta especial para el Launcher con estilos de Leilos
+      return res.send(`
+        <html>
+          <head>
+            <title>Leilos Launcher | Conectado</title>
+            <style>
+              @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&display=swap');
+              :root {
+                --primary: #D4AF37;
+                --bg-dark: #050505;
+                --bg-card: #0a0a0a;
+                --text-main: #ffffff;
+                --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+              }
+              body { 
+                font-family: 'Rajdhani', sans-serif; 
+                background: var(--bg-dark); 
+                color: var(--text-main); 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                height: 100vh; 
+                margin: 0;
+                text-align: center;
+              }
+              .card {
+                background: var(--bg-card);
+                padding: 3rem;
+                border-radius: 12px;
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                box-shadow: 0 0 30px rgba(0,0,0,0.5);
+                position: relative;
+              }
+              .card:after {
+                content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+                background: var(--gold-gradient);
+              }
+              .avatar {
+                width: 100px; height: 100px; border-radius: 50%;
+                border: 3px solid var(--primary);
+                margin-bottom: 1.5rem;
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+              }
+              h1 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+              p { color: #888; font-size: 1.1rem; }
+              .user-id { 
+                font-family: 'Orbitron', sans-serif; background: rgba(0,0,0,0.5); padding: 12px 24px; border-radius: 4px; 
+                color: var(--primary); margin: 1.5rem 0; display: inline-block; border: 1px solid var(--border);
+                font-size: 1.2rem; letter-spacing: 2px;
+              }
+              .btn-confirm {
+                display: block; width: 100%; padding: 16px; margin-top: 1rem;
+                background: var(--gold-gradient); color: #000;
+                font-family: 'Orbitron', sans-serif; font-weight: 800; text-transform: uppercase;
+                border: none; border-radius: 4px; cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+              }
+              .btn-confirm:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+              .btn-confirm:active { transform: scale(0.98); }
+            </style>
+          </head>
+          <body>
+            <div class="card">
+              <img class="avatar" src="${discordUser.avatar ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'}" />
+              <h1>¡BIENVENIDO, ${user.username.toUpperCase()}!</h1>
+              <p>Sesión iniciada correctamente.</p>
+              
+              <div class="user-id" id="username-display">${user.username}</div>
+              
+              <button class="btn-confirm" onclick="confirmLogin()">CONFIRMAR Y ENTRAR</button>
+              
+              <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.5;">Pulsa el botón para que el Launcher detecte tu cuenta.</p>
+            </div>
+            <script>
+              async function confirmLogin() {
+                const btn = document.querySelector('.btn-confirm');
+                btn.innerText = "GENERANDO CÓDIGO...";
+                btn.disabled = true;
+
+                try {
+                  // Pedimos al backend un código de intercambio para este usuario
+                  window.location.href = "/api/launcher/confirm?id=${user.discordId}";
+                } catch (e) {
+                  alert("Error al confirmar sesión.");
+                  btn.innerText = "CONFIRMAR Y ENTRAR";
+                  btn.disabled = false;
+                }
+              }
+            </script>
+          </body>
+        </html>
+      `);
+    }
+
+    // Si es web normal, redirigir al Dashboard
     res.redirect(`/api/v2/dashboard?id=${discordUser.id}`);
 
   } catch (error) {
@@ -678,15 +826,6 @@ router.get('/api/v2/dashboard', async (req, res) => {
               <form action="/api/v2/user/update-name" method="POST">
                 <div class="form-group">
                   <input type="text" name="newUsername" placeholder="${user.username}" required minlength="3">
-                </div>
-                <button type="submit" class="btn">Actualizar</button>
-              </form>
-            </div>
-            <div class="card-stat">
-              <div class="label">Cambiar Contraseña</div>
-              <form action="/api/v2/user/update-password" method="POST">
-                <div class="form-group">
-                  <input type="password" name="newPassword" placeholder="Nueva contraseña" required minlength="6">
                 </div>
                 <button type="submit" class="btn">Actualizar</button>
               </form>
