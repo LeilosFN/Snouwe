@@ -160,6 +160,19 @@ router.get('/api/v2/discord/login', (req, res) => {
   res.redirect(url);
 });
 
+// 1.0 Login específico para el Launcher (Discord Direct)
+router.get('/api/v2/discord/launcher', (req, res) => {
+  const { port } = req.query;
+  if (!port) return res.status(400).send('Falta el puerto del launcher.');
+  
+  const clientId = process.env.DISCORD_CLIENT_ID;
+  const redirectUri = encodeURIComponent(process.env.DISCORD_REDIRECT_URI);
+  // Guardamos el puerto en el state para recuperarlo en el callback
+  const state = `launcher_${port}`;
+  const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=identify%20email&state=${state}`;
+  res.redirect(url);
+});
+
 // 1.1 Iniciar sesión específico para el Launcher (Manual ID)
 router.get('/api/launcher/login', (req, res) => {
   const lang = req.cookies?.leilos_lang || 'es';
@@ -426,7 +439,7 @@ router.get('/api/launcher/verify', (req, res) => {
     status: 'success',
     username: data.username,
     discordId: data.discordId,
-    email: `${data.username}@leilos.tf`
+    email: `${data.username}@leilos.qzz.io`
   });
 });
 
@@ -548,7 +561,7 @@ router.get('/api/v2/discord/callback', async (req, res) => {
       `);
     }
 
-    const email = `${discordUser.id}@leilos.tf`;
+    const email = `${discordUser.id}@leilos.qzz.io`;
 
     // Buscar si el usuario ya existe y tiene los campos básicos
     let user = await User.findOne({ discordId: discordUser.id });
@@ -634,7 +647,7 @@ router.get('/api/v2/discord/callback', async (req, res) => {
                   <label>What ID would you like to have?</label>
                   <input type="text" name="customId" placeholder="Ej: mi_usuario" required minlength="3" pattern="[a-zA-Z0-9_.-]+">
                   <small style="color: #666; font-size: 0.8rem; margin-top: 5px; display: block;">
-                    Tu correo será: ID@leilos.tf
+                    Tu correo será: ID@leilos.qzz.io
                   </small>
                 </div>
 
@@ -655,7 +668,45 @@ router.get('/api/v2/discord/callback', async (req, res) => {
     }
 
     // --- Lógica de Respuesta según el State ---
-    if (state === 'launcher') {
+    if (state && state.startsWith('launcher')) {
+      const port = state.split('_')[1] || '4080';
+      const leilosId = user.email.split('@')[0]; // Parte antes de @leilos.qzz.io
+
+      // Redirigir al puerto local del launcher con la info
+      return res.send(`
+        <html>
+          <head>
+            <title>Snouwe | Autorizando Launcher</title>
+            <style>
+              body { background: #050505; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
+              .loader { border: 4px solid #1a1a1a; border-top: 4px solid #D4AF37; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+              @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+            </style>
+          </head>
+          <body>
+            <div>
+              <div class="loader"></div>
+              <h2 style="color: #D4AF37;">¡Autorizado!</h2>
+              <p>Enviando datos al Launcher...</p>
+            </div>
+            <script>
+              // Enviamos la petición al launcher y cerramos
+              fetch("http://127.0.0.1:${port}/auth?id=${leilosId}")
+                .then(() => {
+                  setTimeout(() => window.close(), 1000);
+                })
+                .catch(() => {
+                  // Si falla el fetch (ej: cors), intentamos redirección directa
+                  window.location.href = "http://127.0.0.1:${port}/auth?id=${leilosId}";
+                  setTimeout(() => window.close(), 2000);
+                });
+            </script>
+          </body>
+        </html>
+      `);
+    }
+
+    if (state === 'manual_launcher') {
       const lang = req.cookies?.leilos_lang || 'es';
       const t = translations[lang];
       // Respuesta especial para el Launcher con estilos de Leilos
@@ -798,8 +849,8 @@ router.post('/api/v2/discord/register', async (req, res) => {
       lastLogin: new Date()
     });
 
-    if (state === 'launcher') {
-      return res.redirect(`/api/v2/discord/login?state=launcher`);
+    if (state && state.startsWith('launcher')) {
+      return res.redirect(`/api/v2/discord/launcher?port=${state.split('_')[1] || '4080'}`);
     } else {
       res.redirect(`/api/v2/dashboard?id=${discordId}`);
     }

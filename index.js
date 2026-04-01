@@ -47,19 +47,32 @@ mongoose.connection.on("error", err => {
     throw err;
 });
 
-app.set("trust proxy", true);
+app.set("trust proxy", 1); // Confía en Cloudflare (1er salto)
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Configuración de rateLimit corregida
-const limiter = rateLimit({
-    windowMs: 0.5 * 60 * 1000,
-    max: 45,
-    keyGenerator: (req) => {
-        return req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip;
+// Deshabilitado el rateLimit para aceptar todas las peticiones (detrás de Cloudflare)
+// const limiter = rateLimit({
+//     windowMs: 0.5 * 60 * 1000,
+//     max: 45,
+//     keyGenerator: (req) => {
+//         return req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip;
+//     }
+// });
+// app.use(limiter);
+
+// Middleware de CORS manual para aceptar peticiones de cualquier origen (especialmente leilos.qzz.io)
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type,Authorization,x-epic-app-version,x-epic-correlation-id,x-epic-client-id,x-epic-build-id");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
     }
+    next();
 });
-app.use(limiter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

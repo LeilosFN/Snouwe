@@ -22,6 +22,11 @@ app.get("/fortnite/api/storefront/v2/gift/check_eligibility/recipient/:recipient
     );
 
     let sender = await Friends.findOne({ accountId: req.user.accountId }).lean();
+    if (!sender) return error.createError(
+        "errors.com.leilos.tf.friends.no_relationship",
+        `User ${req.user.accountId} is not friends with ${req.params.recipientId}`,
+        [req.user.accountId,req.params.recipientId], 28004, undefined, 403, res
+    );
 
     if (!sender.list.accepted.find(i => i.accountId == req.params.recipientId) && req.params.recipientId != req.user.accountId) return error.createError(
         "errors.com.leilos.tf.friends.no_relationship",
