@@ -15,17 +15,18 @@ const { scheduleRestart } = require("./structs/autobackendrestart.js");
 
 if (!fs.existsSync("./ClientSettings")) fs.mkdirSync("./ClientSettings");
 
-global.JWT_SECRET = process.env.JWT_SECRET || functions.MakeID();
+global.JWT_SECRET = process.env.JWT_SECRET || "SnouweStaticSecretForStability";
 const PORT = process.env.PORT || 80;
 
 const tokens = JSON.parse(fs.readFileSync("./tokenManager/tokens.json").toString());
 
 for (let tokenType in tokens) {
-    for (let tokenIndex in tokens[tokenType]) {
-        let decodedToken = jwt.decode(tokens[tokenType][tokenIndex].token.replace("eg1~", ""));
+    // Corregido: Bucle inverso para evitar saltar elementos al usar splice
+    for (let i = tokens[tokenType].length - 1; i >= 0; i--) {
+        let decodedToken = jwt.decode(tokens[tokenType][i].token.replace("eg1~", ""));
 
-        if (DateAddHours(new Date(decodedToken.creation_date), decodedToken.hours_expire).getTime() <= new Date().getTime()) {
-            tokens[tokenType].splice(Number(tokenIndex), 1);
+        if (decodedToken && DateAddHours(new Date(decodedToken.creation_date), decodedToken.hours_expire).getTime() <= new Date().getTime()) {
+            tokens[tokenType].splice(i, 1);
         }
     }
 }
@@ -47,7 +48,7 @@ mongoose.connection.on("error", err => {
     throw err;
 });
 
-app.set("trust proxy", 1); // Confía en Cloudflare (1er salto)
+app.set("trust proxy", true); // Confía en Cloudflare (1er salto)
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -61,12 +62,20 @@ app.use(express.static(path.join(__dirname, "public")));
 // });
 // app.use(limiter);
 
-// Middleware de CORS manual para aceptar peticiones de cualquier origen (especialmente leilos.qzz.io)
+// Middleware de CORS dinámico para soportar Credentials: true con Cloudflare
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    const origin = req.get("Origin");
+    
+    // Si hay un origen específico, lo usamos en lugar de * para permitir Credentials
+    if (origin) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+    } else {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+    }
+    
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type,Authorization,x-epic-app-version,x-epic-correlation-id,x-epic-client-id,x-epic-build-id");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Credentials", "true");
     
     if (req.method === "OPTIONS") {
         return res.sendStatus(200);
@@ -76,13 +85,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use((req, res, next) => {
-    try {
-        const logLine = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
-    } catch (e) {}
-    next();
-});
 
 fs.readdirSync("./routes").forEach(fileName => {
     if (!fileName.endsWith(".js")) return;
