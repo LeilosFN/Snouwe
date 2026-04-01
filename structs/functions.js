@@ -366,7 +366,7 @@ function getPresenceFromUser(fromId, toId, offline) {
 
 async function registerUser(discordId, username, email, password, customId) {
     const plainPassword = password || "1234567890";
-    const userEmail = email || `${customId || discordId}@leilos.qzz.io`.toLowerCase();
+    const userEmail = email || `${customId || discordId}@leilos.tf`.toLowerCase();
 
     if (!discordId || !username) return { message: "Discord ID and Username are required.", status: 400 };
 

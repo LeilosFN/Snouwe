@@ -168,7 +168,6 @@ app.get("/friends/api/v1/:accountId/summary", verifyToken, async (req, res) => {
     }
 
     const friends = await Friends.findOne({ accountId: req.user.accountId }).lean();
-    if (!friends) return res.json(response);
 
     friends.list.accepted.forEach(acceptedFriend => {
         response.friends.push({

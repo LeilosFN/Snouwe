@@ -439,7 +439,7 @@ router.get('/api/launcher/verify', (req, res) => {
     status: 'success',
     username: data.username,
     discordId: data.discordId,
-    email: `${data.username}@leilos.qzz.io`
+    email: `${data.username}@leilos.tf`
   });
 });
 
@@ -561,7 +561,7 @@ router.get('/api/v2/discord/callback', async (req, res) => {
       `);
     }
 
-    const email = `${discordUser.id}@leilos.qzz.io`;
+    const email = `${discordUser.id}@leilos.tf`;
 
     // Buscar si el usuario ya existe y tiene los campos básicos
     let user = await User.findOne({ discordId: discordUser.id });
@@ -647,7 +647,7 @@ router.get('/api/v2/discord/callback', async (req, res) => {
                   <label>What ID would you like to have?</label>
                   <input type="text" name="customId" placeholder="Ej: mi_usuario" required minlength="3" pattern="[a-zA-Z0-9_.-]+">
                   <small style="color: #666; font-size: 0.8rem; margin-top: 5px; display: block;">
-                    Tu correo será: ID@leilos.qzz.io
+                    Tu correo será: ID@leilos.tf
                   </small>
                 </div>
 
@@ -670,7 +670,7 @@ router.get('/api/v2/discord/callback', async (req, res) => {
     // --- Lógica de Respuesta según el State ---
     if (state && state.startsWith('launcher')) {
       const port = state.split('_')[1] || '4080';
-      const leilosId = user.email.split('@')[0]; // Parte antes de @leilos.qzz.io
+      const leilosId = user.email.split('@')[0]; // Parte antes de @leilos.tf
 
       // Redirigir al puerto local del launcher con la info
       return res.send(`

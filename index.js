@@ -15,18 +15,17 @@ const { scheduleRestart } = require("./structs/autobackendrestart.js");
 
 if (!fs.existsSync("./ClientSettings")) fs.mkdirSync("./ClientSettings");
 
-global.JWT_SECRET = process.env.JWT_SECRET || "SnouweStaticSecretForStability";
+global.JWT_SECRET = process.env.JWT_SECRET || functions.MakeID();
 const PORT = process.env.PORT || 80;
 
 const tokens = JSON.parse(fs.readFileSync("./tokenManager/tokens.json").toString());
 
 for (let tokenType in tokens) {
-    // Corregido: Bucle inverso para evitar saltar elementos al usar splice
-    for (let i = tokens[tokenType].length - 1; i >= 0; i--) {
-        let decodedToken = jwt.decode(tokens[tokenType][i].token.replace("eg1~", ""));
+    for (let tokenIndex in tokens[tokenType]) {
+        let decodedToken = jwt.decode(tokens[tokenType][tokenIndex].token.replace("eg1~", ""));
 
-        if (decodedToken && DateAddHours(new Date(decodedToken.creation_date), decodedToken.hours_expire).getTime() <= new Date().getTime()) {
-            tokens[tokenType].splice(i, 1);
+        if (DateAddHours(new Date(decodedToken.creation_date), decodedToken.hours_expire).getTime() <= new Date().getTime()) {
+            tokens[tokenType].splice(Number(tokenIndex), 1);
         }
     }
 }
@@ -48,43 +47,29 @@ mongoose.connection.on("error", err => {
     throw err;
 });
 
-app.set("trust proxy", true); // Confía en Cloudflare (1er salto)
+app.set("trust proxy", true);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Deshabilitado el rateLimit para aceptar todas las peticiones (detrás de Cloudflare)
-// const limiter = rateLimit({
-//     windowMs: 0.5 * 60 * 1000,
-//     max: 45,
-//     keyGenerator: (req) => {
-//         return req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip;
-//     }
-// });
-// app.use(limiter);
-
-// Middleware de CORS dinámico para soportar Credentials: true con Cloudflare
-app.use((req, res, next) => {
-    const origin = req.get("Origin");
-    
-    // Si hay un origen específico, lo usamos en lugar de * para permitir Credentials
-    if (origin) {
-        res.setHeader("Access-Control-Allow-Origin", origin);
-    } else {
-        res.setHeader("Access-Control-Allow-Origin", "*");
+// Configuración de rateLimit corregida
+const limiter = rateLimit({
+    windowMs: 0.5 * 60 * 1000,
+    max: 45,
+    keyGenerator: (req) => {
+        return req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip;
     }
-    
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type,Authorization,x-epic-app-version,x-epic-correlation-id,x-epic-client-id,x-epic-build-id");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-    next();
 });
+app.use(limiter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+    try {
+        const logLine = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
+    } catch (e) {}
+    next();
+});
 
 fs.readdirSync("./routes").forEach(fileName => {
     if (!fileName.endsWith(".js")) return;

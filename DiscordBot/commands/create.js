@@ -8,7 +8,7 @@ module.exports = {
         options: [
             {
                 name: "id",
-                description: "¿Qué ID quieres tener? (Esto se usará para tu correo @leilos.qzz.io)",
+                description: "¿Qué ID quieres tener? (Esto se usará para tu correo @leilos.tf)",
                 required: true,
                 type: 3 // string
             },
@@ -42,7 +42,7 @@ module.exports = {
             return interaction.editReply({ content: "Tu ID solo puede contener letras, números, puntos, guiones y guiones bajos.", ephemeral: true });
         }
 
-        const email = `${customId}@leilos.qzz.io`.toLowerCase();
+        const email = `${customId}@leilos.tf`.toLowerCase();
 
         await functions.registerUser(discordId, username, email, password).then(resp => {
             let embed = new MessageEmbed()
