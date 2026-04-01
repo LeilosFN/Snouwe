@@ -19,7 +19,7 @@ Este backend es una versión personalizada de LawinserverV2 y mejorada llamada *
 - **Comunicados:** Herramienta integrada para enviar anuncios oficiales al servidor de Discord.
 
 ### 🛠️ Administración y Seguridad
-- **Panel de Control:** Dashboard visual para gestión de cuentas en [leilos.qzz.io](https://leilos.qzz.io).
+- **Panel de Control:** Dashboard visual para gestión de cuentas en [api.tleilos.qzz.io](https://api.leilos.qzz.io/api/v2/discord/login).
 - **Seguridad:** Implementación de JWT, validación de tokens y Rate Limiting.
 - **Persistencia:** Base de datos **MongoDB** (leilos_data).
 
