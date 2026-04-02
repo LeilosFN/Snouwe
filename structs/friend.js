@@ -51,7 +51,7 @@ async function sendFriendReq(fromId, toId) {
             "created": new Date().toISOString(),
             "favorite": false
         },
-        "type": "com.epicgames.friends.core.apiobjects.Friend",
+        "type": "com.leilos.tf.friends.core.apiobjects.Friend",
         "timestamp": new Date().toISOString()
     }, from.accountId);
 
@@ -65,7 +65,7 @@ async function sendFriendReq(fromId, toId) {
             "created": new Date().toISOString(),
             "favorite": false
         },
-        "type": "com.epicgames.friends.core.apiobjects.Friend",
+        "type": "com.leilos.tf.friends.core.apiobjects.Friend",
         "timestamp": new Date().toISOString()
     }, to.accountId);
 
@@ -98,7 +98,7 @@ async function acceptFriendReq(fromId, toId) {
                 "created": new Date().toISOString(),
                 "favorite": false
             },
-            "type": "com.epicgames.friends.core.apiobjects.Friend",
+            "type": "com.leilos.tf.friends.core.apiobjects.Friend",
             "timestamp": new Date().toISOString()
         }, from.accountId);
 
@@ -113,7 +113,7 @@ async function acceptFriendReq(fromId, toId) {
                 "created": new Date().toISOString(),
                 "favorite": false
             },
-            "type": "com.epicgames.friends.core.apiobjects.Friend",
+            "type": "com.leilos.tf.friends.core.apiobjects.Friend",
             "timestamp": new Date().toISOString()
         }, to.accountId);
 
@@ -155,7 +155,7 @@ async function deleteFriend(fromId, toId) {
                 "accountId": to.accountId,
                 "reason": "DELETED"
             },
-            "type": "com.epicgames.friends.core.apiobjects.FriendRemoval",
+            "type": "com.leilos.tf.friends.core.apiobjects.FriendRemoval",
             "timestamp": new Date().toISOString()
         }, from.accountId);
 
@@ -164,7 +164,7 @@ async function deleteFriend(fromId, toId) {
                 "accountId": from.accountId,
                 "reason": "DELETED"
             },
-            "type": "com.epicgames.friends.core.apiobjects.FriendRemoval",
+            "type": "com.leilos.tf.friends.core.apiobjects.FriendRemoval",
             "timestamp": new Date().toISOString()
         }, to.accountId);
 

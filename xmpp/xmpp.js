@@ -435,7 +435,7 @@ function RemoveClient(ws, joinedMUCs) {
             .attribute("xmlns", "jabber:client")
             .attribute("to", ClientData.jid)
             .element("body", JSON.stringify({
-                "type": "com.epicgames.party.memberexited",
+                "type": "com.leilos.tf.party.memberexited",
                 "payload": {
                     "partyId": partyId,
                     "memberId": client.accountId,

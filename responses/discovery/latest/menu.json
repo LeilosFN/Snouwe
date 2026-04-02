@@ -3,40 +3,6 @@
         "namespace": "fn",
         "accountId": "epic",
         "creatorName": "Epic",
-        "mnemonic": "welcome_banner",
-        "linkType": "External",
-        "metadata": {
-            "age_rating_index": 0,
-            "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-            "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
-            },
-            "title": "LEILOS",
-            "tagline": "Disfruta de la mejor experiencia.",
-            "alt_title": {
-                "es": "LEILOS",
-                "en": "LEILOS"
-            }
-        },
-        "version": 1,
-        "active": true,
-        "disabled": false,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
-        "isVisible": true,
-        "created": "2024-01-01T00:00:00.000Z",
-        "published": "2024-01-01T00:00:00.000Z",
-        "descriptionTags": [],
-        "moderationStatus": "Approved",
-        "discoveryIntent": "PUBLIC"
-    },
-    {
-        "namespace": "fn",
-        "accountId": "epic",
-        "creatorName": "Epic",
         "mnemonic": "playlist_showdownalt_solo",
         "linkType": "BR:Playlist",
         "metadata": {
@@ -45,23 +11,27 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "Copa Arena",
-                "es": "Copa Arena",
-                "es-419": "Copa Arena"
+                "en": "ARENA SOLO",
+                "es": "ARENA SOLO",
+                "es-419": "ARENA SOLO"
             },
-            "image_url": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
+            "tagline": "ARENA SOLO",
+            "image_url": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
             "product_tag": "Product.BR.Build.Solo",
             "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-                "url_m": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-                "url": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png"
+                "url_s": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
+                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
+                "url_m": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
+                "url": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_showdownalt_solo"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
-            "title": "Copa Arena"
+            "title": "Arena Solo",
+            "playlist_name": "ARENA SOLO",
+            "sub_title": "ARENA SOLO",
+            "tagline": "ARENA SOLO"
         },
         "version": 1,
         "active": true,
@@ -87,29 +57,32 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "Copa TEST BACKEND & MODES",
-                "es": "Copa TEST BACKEND & MODES",
-                "es-419": "Copa TEST BACKEND & MODES"
+                "en": "COPA TEST BACKEND",
+                "es": "COPA TEST BACKEND",
+                "es-419": "COPA TEST BACKEND"
             },
-            "image_url": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
+            "tagline": "MODOS & BACKEND",
+            "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
             "product_tag": "Product.BR.Build.Solo",
             "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-                "url_m": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-                "url": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png"
+                "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+                "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+                "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+                "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_showdownalt_solo"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
-            "title": "Copa TEST BACKEND & MODES"
+            "title": "TEST BACKEND & MODES",
+            "playlist_name": "COPA TEST BACKEND",
+            "sub_title": "MODOS & BACKEND"
         },
         "version": 1,
         "active": true,
         "disabled": true,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
+        "lockStatus": "LOCKED",
+        "lockStatusReason": "ComingSoon",
         "isVisible": true,
         "created": "2024-01-01T00:00:00.000Z",
         "published": "2024-01-01T00:00:00.000Z",
@@ -129,28 +102,31 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "Solo",
-                "es": "Solo"
+                "en": "EN SOLITARIO",
+                "es": "EN SOLITARIO",
+                "es-419": "EN SOLITARIO"
             },
-            "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "tagline": "EN SOLITARIO",
+            "image_url": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
             "product_tag": "Product.BR.Build.Solo",
             "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
+                "url_s": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
+                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
+                "url_m": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
+                "url": "https://api.leilos.qzz.io/images/gamemodes/solo.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_defaultsolo"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
-            "title": "Solo"
+            "title": "Solo",
+            "playlist_name": "EN SOLITARIO"
         },
         "version": 95,
         "active": true,
-        "disabled": false,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
+        "disabled": true,
+        "lockStatus": "LOCKED",
+        "lockStatusReason": "ComingSoon",
         "isVisible": true,
         "created": "2021-10-01T00:56:43.870Z",
         "published": "2023-11-03T08:26:11.189Z",
@@ -170,28 +146,31 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "Duo",
-                "es": "Dúo"
+                "en": "EN DÚO",
+                "es": "EN DÚO",
+                "es-419": "EN DÚO"
             },
-            "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "tagline": "EN DÚO",
+            "image_url": "https://api.leilos.qzz.io/images/gamemodes/duos.png",
             "product_tag": "Product.BR.Build.Duos",
             "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
+                "url_s": "https://api.leilos.qzz.io/images/gamemodes/duos.png",
+                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/duos.png",
+                "url_m": "https://api.leilos.qzz.io/images/gamemodes/duos.png",
+                "url": "https://api.leilos.qzz.io/images/gamemodes/duos.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_defaultduo"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
-            "title": "Duo"
+            "title": "Duo",
+            "playlist_name": "EN DÚO"
         },
         "version": 1,
         "active": true,
         "disabled": true,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
+        "lockStatus": "LOCKED",
+        "lockStatusReason": "ComingSoon",
         "isVisible": true,
         "created": "2024-01-01T00:00:00.000Z",
         "published": "2024-01-01T00:00:00.000Z",
@@ -211,28 +190,31 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "Trio",
-                "es": "Trío"
+                "en": "EN TRÍO",
+                "es": "EN TRÍO",
+                "es-419": "EN TRÍO"
             },
-            "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "tagline": "EN TRÍO",
+            "image_url": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
             "product_tag": "Product.BR.Build.Trios",
             "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
+                "url_s": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+                "url_m": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+                "url": "https://api.leilos.qzz.io/images/gamemodes/trios.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_defaulttrio"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
-            "title": "Trio"
+            "title": "Trios",
+            "playlist_name": "EN TRÍO"
         },
         "version": 1,
         "active": true,
         "disabled": true,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
+        "lockStatus": "LOCKED",
+        "lockStatusReason": "ComingSoon",
         "isVisible": true,
         "created": "2024-01-01T00:00:00.000Z",
         "published": "2024-01-01T00:00:00.000Z",
@@ -252,28 +234,31 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "Squad",
-                "es": "Escuadrón"
+                "en": "EN ESCUADRÓN",
+                "es": "EN ESCUADRÓN",
+                "es-419": "EN ESCUADRÓN"
             },
-            "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "tagline": "EN ESCUADRÓN",
+            "image_url": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
             "product_tag": "Product.BR.Build.Squads",
             "image_urls": {
-                "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
-                "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
+                "url_s": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+                "url_xs": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+                "url_m": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+                "url": "https://api.leilos.qzz.io/images/gamemodes/squads.png"
             },
             "matchmaking": {
                 "override_playlist": "playlist_defaultsquad"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
-            "title": "Escuadrón"
+            "title": "Squad",
+            "playlist_name": "EN ESCUADRÓN"
         },
         "version": 1,
         "active": true,
         "disabled": true,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
+        "lockStatus": "LOCKED",
+        "lockStatusReason": "ComingSoon",
         "isVisible": true,
         "created": "2024-01-01T00:00:00.000Z",
         "published": "2024-01-01T00:00:00.000Z",
@@ -290,9 +275,10 @@
         "metadata": {
             "age_rating_index": 0,
             "alt_title": {
-                "en": "Save the World",
-                "es": "Salvar el mundo"
+                "en": "SALVAR EL MUNDO",
+                "es": "SALVAR EL MUNDO"
             },
+            "tagline": "SALVAR EL MUNDO",
             "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
             "product_tag": "Product.Campaign",
             "image_urls": {
@@ -301,13 +287,14 @@
                 "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
                 "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
             },
-            "title": "Salvar el mundo"
+            "title": "Salvar el mundo",
+            "playlist_name": "SALVAR EL MUNDO"
         },
         "version": 1,
         "active": true,
         "disabled": true,
-        "lockStatus": "UNLOCKED",
-        "lockStatusReason": "NONE",
+        "lockStatus": "LOCKED",
+        "lockStatusReason": "ComingSoon",
         "isVisible": true,
         "created": "2024-01-01T00:00:00.000Z",
         "published": "2024-01-01T00:00:00.000Z",

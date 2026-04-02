@@ -9,7 +9,7 @@
       "_type": "CommonUI Simple Message",
       "message": {
         "_type": "CommonUI Simple Message Base",
-        "title": "LEILOS (¬‿¬)",
+        "title": "SNOUWE (¬‿¬)",
         "body": "Proyecto Leilos - Web: leilos.qzz.io"
       }
     },
@@ -23,8 +23,8 @@
       "_type": "CommonUI Simple Message",
       "message": {
         "_type": "CommonUI Simple Message Base",
-        "title": "LEILOS",
-        "body": "Bienvenido a LEILOS!\nOfficial Web: leilos.qzz.io."
+        "title": "LEILOS (¬‿¬)",
+        "body": "Bienvenido a Snouwe!\nOfficial Web: leilos.qzz.io.\nDisfruta de la mejor experiencia."
       }
     },
     "_activeDate": "2017-08-25T20:35:56.304Z",
@@ -40,7 +40,7 @@
         "hidden": false,
         "_type": "CommonUI Simple Message Base",
         "adspace": "ENJOY!",
-        "title": "LEILOS",
+        "title": "LEILOS (¬‿¬)",
         "body": "Web: leilos.qzz.io",
         "spotlight": false
       }
@@ -217,7 +217,7 @@
           "_type": "CommonUI Simple Message Base",
           "adspace": "DISCORD!",
           "title": "LEILOS (¬‿¬)",
-          "body": "https://leilos.qzz.io",
+          "body": "Web: https://leilos.qzz.io",
           "spotlight": false
         },
         {
@@ -226,7 +226,7 @@
           "_type": "CommonUI Simple Message Base",
           "adspace": "ENJOY!",
           "title": "LEILOS (¬‿¬)",
-          "body": "Discord: https://leilos.qzz.io",
+          "body": "Web: https://leilos.qzz.io",
           "spotlight": false
         }
       ]
@@ -446,7 +446,7 @@
           "hidden": false,
           "_type": "CommonUI Emergency Notice Base",
           "title": "LEILOS (¬‿¬)",
-          "body": "https://leilos.qzz.io"
+          "body": "Web: https://leilos.qzz.io"
         }
       ]
     },
@@ -5450,8 +5450,8 @@
           "hidden": false,
           "tabTitleOverride": "LEILOS (¬‿¬)",
           "_type": "CommonUI Simple Message MOTD",
-          "title": "Welcome to Leilos!",
-          "body": "Discord: https://mini.crisu.qzz.io/?d=LeilosDiscord",
+          "title": "Welcome to LEILOS (¬‿¬)",
+          "body": "Web: https://leilos.qzz.io",
           "offerAction": "ShowOfferDetails",
           "videoLoop": false,
           "videoStreamingEnabled": false,
@@ -5487,7 +5487,7 @@
           "_type": "CommonUI Simple Message Base",
           "adspace": "ENJOY!",
           "title": "LEILOS (¬‿¬)",
-          "body": "Discord: https://mini.crisu.qzz.io/?d=LeilosDiscord",
+          "body": "Web: https://leilos.qzz.io",
           "spotlight": false
         }
       ]
@@ -5563,7 +5563,7 @@
           "_type": "CommonUI Simple Message Base",
           "adspace": "ENJOY!",
           "title": "LEILOS (¬‿¬)",
-          "body": "Discord: https://mini.crisu.qzz.io/?d=LeilosDiscord",
+          "body": "Web: https://leilos.qzz.io",
           "spotlight": false
         }
       ]

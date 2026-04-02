@@ -10,20 +10,11 @@
           "results": [
             {
               "lastVisited": null,
-              "linkCode": "welcome_banner",
-              "isFavorite": false,
-              "globalCCU": 1,
-              "lockStatus": "UNLOCKED",
-              "lockStatusReason": "NONE",
-              "isVisible": true
-            },
-            {
-              "lastVisited": null,
               "linkCode": "playlist_defaultsolo",
-              "isFavorite": false,
+              "isFavorite": true,
               "globalCCU": 1,
-              "lockStatus": "UNLOCKED",
-              "lockStatusReason": "NONE",
+              "lockStatus": "LOCKED",
+              "lockStatusReason": "ComingSoon",
               "isVisible": true
             },
             {
@@ -43,20 +34,11 @@
             "results": [
               {
                 "lastVisited": null,
-                "linkCode": "welcome_banner",
-                "isFavorite": false,
-                "globalCCU": 1,
-                "lockStatus": "UNLOCKED",
-                "lockStatusReason": "NONE",
-                "isVisible": true
-              },
-              {
-                "lastVisited": null,
                 "linkCode": "playlist_defaultsolo",
                 "isFavorite": false,
                 "globalCCU": 1,
-                "lockStatus": "UNLOCKED",
-                "lockStatusReason": "NONE",
+                "lockStatus": "LOCKED",
+                "lockStatusReason": "ComingSoon",
                 "isVisible": true
               },
               {
@@ -75,7 +57,7 @@
       },
       {
         "PanelName": "ByEpicNoCompetitive",
-        "PanelDisplayName": "DE EPIC",
+        "PanelDisplayName": "BY EPIC",
         "FeatureTags": ["col:5"],
         "PanelType": "AnalyticsList",
         "FirstPage": {
@@ -84,31 +66,46 @@
               "lastVisited": null,
               "linkCode": "playlist_defaultsolo",
               "isFavorite": false,
-              "globalCCU": 1
+              "globalCCU": 1,
+              "lockStatus": "UNLOCKED",
+              "lockStatusReason": "NONE",
+              "isVisible": true
             },
             {
               "lastVisited": null,
               "linkCode": "playlist_defaultduo",
               "isFavorite": false,
-              "globalCCU": 1
+              "globalCCU": 1,
+              "lockStatus": "LOCKED",
+              "lockStatusReason": "ComingSoon",
+              "isVisible": true
             },
             {
               "lastVisited": null,
               "linkCode": "playlist_defaulttrio",
               "isFavorite": false,
-              "globalCCU": 1
+              "globalCCU": 1,
+              "lockStatus": "LOCKED",
+              "lockStatusReason": "ComingSoon",
+              "isVisible": true
             },
             {
               "lastVisited": null,
               "linkCode": "playlist_defaultsquad",
               "isFavorite": false,
-              "globalCCU": 1
+              "globalCCU": 1,
+              "lockStatus": "LOCKED",
+              "lockStatusReason": "ComingSoon",
+              "isVisible": true
             },
             {
               "lastVisited": null,
               "linkCode": "playlist_campaign",
               "isFavorite": false,
-              "globalCCU": 1
+              "globalCCU": 1,
+              "lockStatus": "LOCKED",
+              "lockStatusReason": "ComingSoon",
+              "isVisible": true
             }
           ],
           "hasMore": false
@@ -120,31 +117,46 @@
                 "lastVisited": null,
                 "linkCode": "playlist_defaultsolo",
                 "isFavorite": false,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "UNLOCKED",
+                "lockStatusReason": "NONE",
+                "isVisible": true
               },
               {
                 "lastVisited": null,
                 "linkCode": "playlist_defaultduo",
                 "isFavorite": false,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "LOCKED",
+                "lockStatusReason": "ComingSoon",
+                "isVisible": true
               },
               {
                 "lastVisited": null,
                 "linkCode": "playlist_defaulttrio",
                 "isFavorite": false,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "LOCKED",
+                "lockStatusReason": "ComingSoon",
+                "isVisible": true
               },
               {
                 "lastVisited": null,
                 "linkCode": "playlist_defaultsquad",
                 "isFavorite": false,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "LOCKED",
+                "lockStatusReason": "ComingSoon",
+                "isVisible": true
               },
               {
                 "lastVisited": null,
                 "linkCode": "playlist_campaign",
                 "isFavorite": false,
-                "globalCCU": 1
+                "globalCCU": 1,
+                "lockStatus": "LOCKED",
+                "lockStatusReason": "ComingSoon",
+                "isVisible": true
               }
             ],
             "hasMore": false
@@ -153,7 +165,7 @@
       },
       {
         "PanelName": "Competitive",
-        "PanelDisplayName": "COMPETICIÓN",
+        "PanelDisplayName": "Competitive",
         "FeatureTags": ["col:5"],
         "PanelType": "CuratedList",
         "FirstPage": {
@@ -163,8 +175,8 @@
               "linkCode": "playlist_test_cup",
               "isFavorite": false,
               "globalCCU": 1,
-              "lockStatus": "UNLOCKED",
-              "lockStatusReason": "NONE",
+              "lockStatus": "LOCKED",
+              "lockStatusReason": "ComingSoon",
               "isVisible": true
             },
             {
@@ -187,8 +199,8 @@
                 "linkCode": "playlist_test_cup",
                 "isFavorite": false,
                 "globalCCU": 1,
-                "lockStatus": "UNLOCKED",
-                "lockStatusReason": "NONE",
+                "lockStatus": "LOCKED",
+                "lockStatusReason": "ComingSoon",
                 "isVisible": true
               },
               {
@@ -208,7 +220,7 @@
     ],
     "TestCohorts": [
       {
-        "AnalyticsId": "LEILOS_COHORT",
+        "AnalyticsId": "SNOUWE_COHORT",
         "CohortSelector": "PlayerDeterministic",
         "TestName": "testing",
         "SelectionChance": 1.0,
@@ -223,20 +235,11 @@
               "results": [
                 {
                   "lastVisited": null,
-                  "linkCode": "welcome_banner",
-                  "isFavorite": false,
-                  "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
-                  "isVisible": true
-                },
-                {
-                  "lastVisited": null,
                   "linkCode": "playlist_defaultsolo",
                   "isFavorite": false,
                   "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
+                  "lockStatus": "LOCKED",
+                  "lockStatusReason": "ComingSoon",
                   "isVisible": true,
                   "age_rating_index": 0
                 }
@@ -246,7 +249,7 @@
           },
           {
             "PanelName": "ByEpicNoCompetitive",
-            "PanelDisplayName": "DE EPIC",
+            "PanelDisplayName": "BY EPIC",
             "FeatureTags": ["col:5"],
             "PanelType": "AnalyticsList",
             "FirstPage": {
@@ -266,8 +269,8 @@
                   "linkCode": "playlist_defaultduo",
                   "isFavorite": false,
                   "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
+                  "lockStatus": "LOCKED",
+                  "lockStatusReason": "ComingSoon",
                   "isVisible": true,
                   "age_rating_index": 0
                 },
@@ -276,8 +279,8 @@
                   "linkCode": "playlist_defaulttrio",
                   "isFavorite": false,
                   "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
+                  "lockStatus": "LOCKED",
+                  "lockStatusReason": "ComingSoon",
                   "isVisible": true,
                   "age_rating_index": 0
                 },
@@ -286,8 +289,8 @@
                   "linkCode": "playlist_defaultsquad",
                   "isFavorite": false,
                   "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
+                  "lockStatus": "LOCKED",
+                  "lockStatusReason": "ComingSoon",
                   "isVisible": true,
                   "age_rating_index": 0
                 },
@@ -296,8 +299,8 @@
                   "linkCode": "playlist_campaign",
                   "isFavorite": false,
                   "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
+                  "lockStatus": "LOCKED",
+                  "lockStatusReason": "ComingSoon",
                   "isVisible": true,
                   "age_rating_index": 0
                 }
@@ -307,7 +310,7 @@
           },
           {
             "PanelName": "Competitive",
-            "PanelDisplayName": "COMPETICIÓN",
+            "PanelDisplayName": "Competitive",
             "FeatureTags": ["col:5"],
             "PanelType": "CuratedList",
             "FirstPage": {
@@ -317,8 +320,8 @@
                   "linkCode": "playlist_test_cup",
                   "isFavorite": false,
                   "globalCCU": 1,
-                  "lockStatus": "UNLOCKED",
-                  "lockStatusReason": "NONE",
+                  "lockStatus": "LOCKED",
+                  "lockStatusReason": "ComingSoon",
                   "isVisible": true
                 },
                 {

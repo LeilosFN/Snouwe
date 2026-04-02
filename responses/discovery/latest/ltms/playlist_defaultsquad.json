@@ -1,0 +1,43 @@
+{
+    "namespace": "fn",
+    "accountId": "epic",
+    "creatorName": "Epic",
+    "mnemonic": "playlist_defaultsquad",
+    "linkType": "BR:Playlist",
+    "metadata": {
+        "age_rating_index": 0,
+        "parent_set": "set_br_playlists",
+        "favorite_override": "set_br_playlists",
+        "play_history_override": "set_br_playlists",
+        "alt_title": {
+            "en": "EN ESCUADRÓN",
+            "es": "EN ESCUADRÓN",
+            "es-419": "EN ESCUADRÓN"
+        },
+        "image_url": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+        "product_tag": "Product.BR.Build.Squads",
+        "image_urls": {
+            "url_s": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+            "url_xs": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+            "url_m": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
+            "url": "https://api.leilos.qzz.io/images/gamemodes/squads.png"
+        },
+        "matchmaking": {
+            "override_playlist": "playlist_defaultsquad"
+        },
+        "video_vuid": "taqdZkWyokbCyEFWld",
+        "title": "Squad"
+    },
+    "version": 1,
+    "linkCode": "playlist_defaultsquad",
+    "active": true,
+    "disabled": true,
+    "lockStatus": "LOCKED",
+    "lockStatusReason": "ComingSoon",
+    "isVisible": true,
+    "created": "2024-01-01T00:00:00.000Z",
+    "published": "2024-01-01T00:00:00.000Z",
+    "descriptionTags": [],
+    "moderationStatus": "Approved",
+    "discoveryIntent": "PUBLIC"
+}

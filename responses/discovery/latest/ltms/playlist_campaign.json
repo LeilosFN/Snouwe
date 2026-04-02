@@ -1,0 +1,35 @@
+{
+    "namespace": "fn",
+    "accountId": "epic",
+    "creatorName": "Epic",
+    "mnemonic": "playlist_campaign",
+    "linkType": "External",
+    "metadata": {
+        "age_rating_index": 0,
+        "alt_title": {
+            "en": "SALVAR EL MUNDO",
+            "es": "SALVAR EL MUNDO"
+        },
+        "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+        "product_tag": "Product.Campaign",
+        "image_urls": {
+            "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
+        },
+        "title": "Salvar el mundo"
+    },
+    "version": 1,
+    "linkCode": "playlist_campaign",
+    "active": true,
+    "disabled": true,
+    "lockStatus": "LOCKED",
+    "lockStatusReason": "ComingSoon",
+    "isVisible": true,
+    "created": "2024-01-01T00:00:00.000Z",
+    "published": "2024-01-01T00:00:00.000Z",
+    "descriptionTags": [],
+    "moderationStatus": "Approved",
+    "discoveryIntent": "PUBLIC"
+}

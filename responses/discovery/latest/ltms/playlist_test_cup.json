@@ -1,0 +1,46 @@
+{
+    "namespace": "fn",
+    "accountId": "epic",
+    "creatorName": "Epic",
+    "mnemonic": "playlist_test_cup",
+    "linkType": "BR:Playlist",
+    "metadata": {
+        "age_rating_index": 0,
+        "parent_set": "set_br_playlists",
+        "favorite_override": "set_br_playlists",
+        "play_history_override": "set_br_playlists",
+        "alt_title": {
+            "en": "COPA TEST BACKEND",
+            "es": "COPA TEST BACKEND",
+            "es-419": "COPA TEST BACKEND"
+        },
+        "tagline": "MODOS & BACKEND",
+        "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+        "product_tag": "Product.BR.Build.Solo",
+        "image_urls": {
+            "url_s": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "url_xs": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "url_m": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
+            "url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png"
+        },
+        "matchmaking": {
+            "override_playlist": "playlist_showdownalt_solo"
+        },
+        "video_vuid": "taqdZkWyokbCyEFWld",
+        "title": "TEST BACKEND & MODES",
+        "playlist_name": "COPA TEST BACKEND",
+        "sub_title": "MODOS & BACKEND"
+    },
+    "version": 1,
+    "linkCode": "playlist_test_cup",
+    "active": true,
+    "disabled": true,
+    "lockStatus": "LOCKED",
+    "lockStatusReason": "ComingSoon",
+    "isVisible": true,
+    "created": "2024-01-01T00:00:00.000Z",
+    "published": "2024-01-01T00:00:00.000Z",
+    "descriptionTags": [],
+    "moderationStatus": "Approved",
+    "discoveryIntent": "PUBLIC"
+}

@@ -1,0 +1,43 @@
+{
+    "namespace": "fn",
+    "accountId": "epic",
+    "creatorName": "Epic",
+    "mnemonic": "playlist_defaulttrio",
+    "linkType": "BR:Playlist",
+    "metadata": {
+        "age_rating_index": 0,
+        "parent_set": "set_br_playlists",
+        "favorite_override": "set_br_playlists",
+        "play_history_override": "set_br_playlists",
+        "alt_title": {
+            "en": "EN TRÍO",
+            "es": "EN TRÍO",
+            "es-419": "EN TRÍO"
+        },
+        "image_url": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+        "product_tag": "Product.BR.Build.Trios",
+        "image_urls": {
+            "url_s": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+            "url_xs": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+            "url_m": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+            "url": "https://api.leilos.qzz.io/images/gamemodes/trios.png"
+        },
+        "matchmaking": {
+            "override_playlist": "playlist_defaulttrio"
+        },
+        "video_vuid": "taqdZkWyokbCyEFWld",
+        "title": "Trio"
+    },
+    "version": 1,
+    "linkCode": "playlist_defaulttrio",
+    "active": true,
+    "disabled": true,
+    "lockStatus": "LOCKED",
+    "lockStatusReason": "ComingSoon",
+    "isVisible": true,
+    "created": "2024-01-01T00:00:00.000Z",
+    "published": "2024-01-01T00:00:00.000Z",
+    "descriptionTags": [],
+    "moderationStatus": "Approved",
+    "discoveryIntent": "PUBLIC"
+}

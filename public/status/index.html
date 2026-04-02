@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEILOS STATUS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #D4AF37;
+            --primary-hover: #F5Edc3;
+            --bg-dark: #050505;
+            --bg-card: #0a0a0a;
+            --text-main: #ffffff;
+            --text-muted: #b8b8b8;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --border: rgba(212, 175, 55, 0.1);
+            --success: #30d158;
+            --warning: #ffd60a;
+            --danger: #ff453a;
+            --accent: #D4AF37;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scrollbar-width: thin; scrollbar-color: var(--primary) var(--bg-dark); }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background-color: var(--primary); border-radius: 6px; border: 3px solid var(--bg-dark); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--primary-hover); }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            z-index: 1;
+        }
+
+        .header {
+            margin-bottom: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            margin-bottom: 4px;
+        }
+
+        .brand p {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-box:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .stat-box:hover:after {
+            transform: scaleX(1);
+        }
+
+        .stat-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .stat-indicator {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .indicator-fill {
+            height: 100%;
+            background: var(--gold-gradient);
+            width: 0%;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-sections {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 24px;
+        }
+
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .panel:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+        }
+
+        .panel-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .panel-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        .panel-content {
+            padding: 12px 24px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-row:last-child { border: none; }
+
+        .data-label { color: var(--text-muted); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .data-value { 
+            font-weight: 600; 
+            font-size: 14px; 
+            color: var(--text-main);
+            font-family: 'Consolas', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .player-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .player-item:last-child { border: none; }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .player-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-dark);
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .player-meta h4 { 
+            font-size: 14px; 
+            font-weight: 700; 
+            color: var(--text-main);
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .player-meta p { 
+            font-size: 11px; 
+            color: var(--text-muted); 
+            font-family: 'Consolas', monospace; 
+        }
+
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 800;
+            background: rgba(48, 209, 88, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-sections { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <h1>LEILOS STATUS</h1>
+                <p id="system-time">Monitoring active</p>
+            </div>
+            <div class="status-badge" style="display: flex; align-items: center; font-size: 12px; color: var(--success); font-weight: 800; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
+                <span style="width: 8px; height: 8px; background: var(--success); border-radius: 50%; margin-right: 10px; box-shadow: 0 0 15px var(--success);"></span>
+                Server Operational
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="stat-box">
+                <span class="stat-label">Active Users</span>
+                <div class="stat-value" id="val-players">0</div>
+                <div class="stat-indicator"><div class="indicator-fill" style="width: 100%; background: var(--accent);"></div></div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Memory Utilization</span>
+                <div class="stat-value" id="val-ram">0%</div>
+                <div class="stat-indicator"><div id="bar-ram" class="indicator-fill"></div></div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">System Uptime</span>
+                <div class="stat-value" id="val-uptime">0s</div>
+                <div class="stat-indicator"><div class="indicator-fill" style="width: 100%; background: var(--warning);"></div></div>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Network Load</span>
+                <div class="stat-value">Stable</div>
+                <div class="stat-indicator"><div class="indicator-fill" style="width: 100%; background: var(--success);"></div></div>
+            </div>
+        </div>
+
+        <div class="main-sections">
+            <section class="panel">
+                <div class="panel-header">
+                    <h2>Server Specifications</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="data-row">
+                        <span class="data-label">Processor</span>
+                        <span class="data-value" id="sys-cpu">-</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Logical Cores</span>
+                        <span class="data-value" id="sys-cores">-</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Total Provisioned Memory</span>
+                        <span class="data-value" id="sys-ram-t">-</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Host OS</span>
+                        <span class="data-value" id="sys-os">-</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Deployment Region</span>
+                        <span class="data-value">EU-Madrid (Local)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <h2>Concurrent Sessions</h2>
+                    <span id="player-count-badge" style="font-size: 12px; color: var(--text-secondary);">0 active</span>
+                </div>
+                <div class="panel-content" id="player-container">
+                    <p style="padding: 20px 0; text-align: center; color: var(--text-secondary); font-size: 13px;">No active sessions found.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('system-time').innerText = `Last update: ${timeStr}`;
+        }
+
+        async function update() {
+            try {
+                const res = await fetch('/api/v1/server/status');
+                const d = await res.json();
+                
+                document.getElementById('val-players').innerText = d.onlineCount;
+                document.getElementById('player-count-badge').innerText = `${d.onlineCount} active`;
+                
+                const ramPct = d.system.ram.percent;
+                document.getElementById('val-ram').innerText = ramPct;
+                document.getElementById('bar-ram').style.width = ramPct;
+                
+                document.getElementById('val-uptime').innerText = d.system.uptime;
+                
+                document.getElementById('sys-cpu').innerText = d.system.cpu.model.split('@')[0].trim();
+                document.getElementById('sys-cores').innerText = d.system.cpu.cores;
+                document.getElementById('sys-ram-t').innerText = d.system.ram.total;
+                document.getElementById('sys-os').innerText = d.system.platform.toUpperCase();
+
+                const container = document.getElementById('player-container');
+                if (d.users.length === 0) {
+                    container.innerHTML = '<p style="padding: 24px 0; text-align: center; color: var(--text-secondary); font-size: 13px;">No active sessions found.</p>';
+                } else {
+                    container.innerHTML = d.users.map(u => `
+                        <div class="player-item">
+                            <div class="player-info">
+                                <div class="player-avatar">${u.displayName[0]}</div>
+                                <div class="player-meta">
+                                    <h4>${u.displayName}</h4>
+                                    <p>${u.accountId}</p>
+                                </div>
+                            </div>
+                            <span class="status-pill">ACTIVE</span>
+                        </div>
+                    `).join('');
+                }
+                updateTime();
+            } catch (e) { console.error('Dashboard Error:', e); }
+        }
+
+        update();
+        setInterval(update, 5000);
+    </script>
+</body>
+</html>

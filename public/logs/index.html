@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEILOS | SERVER LOGS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+        
+        :root {
+            --primary: #D4AF37;
+            --primary-hover: #F5Edc3;
+            --bg-dark: #050505;
+            --bg-card: #0a0a0a;
+            --text-main: #ffffff;
+            --text-muted: #b8b8b8;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --border: rgba(212, 175, 55, 0.1);
+            --backend-color: #30d158;
+            --bot-color: #ffd60a;
+            --xmpp-color: #5e5ce6;
+            --error-color: #ff453a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scrollbar-width: thin; scrollbar-color: var(--primary) var(--bg-dark); }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background-color: var(--primary); border-radius: 6px; border: 3px solid var(--bg-dark); }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 80px);
+        }
+
+        .header {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .log-container {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .log-container:after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--gold-gradient);
+        }
+
+        .log-entry {
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease-out;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .timestamp { color: var(--text-muted); margin-right: 10px; font-size: 12px; }
+        .type { font-weight: bold; margin-right: 10px; padding: 2px 6px; border-radius: 3px; font-size: 12px; text-transform: uppercase; }
+        
+        .type-BACKEND { background: rgba(48, 209, 88, 0.1); color: var(--backend-color); border: 1px solid rgba(48, 209, 88, 0.2); }
+        .type-BOT { background: rgba(255, 214, 10, 0.1); color: var(--bot-color); border: 1px solid rgba(255, 214, 10, 0.2); }
+        .type-XMPP { background: rgba(94, 92, 230, 0.1); color: var(--xmpp-color); border: 1px solid rgba(94, 92, 230, 0.2); }
+        .type-ERROR { background: rgba(255, 69, 58, 0.1); color: var(--error-color); border: 1px solid rgba(255, 69, 58, 0.2); }
+
+        .message { color: var(--text-main); }
+
+        .controls {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--gold-gradient);
+            color: #000;
+            border-color: transparent;
+        }
+
+        .auto-scroll-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="brand">
+                <h1>Server Logs</h1>
+            </div>
+            <div class="auto-scroll-label">
+                <input type="checkbox" id="autoScroll" checked>
+                <span>Auto-scroll</span>
+            </div>
+        </div>
+        <div class="log-container" id="logContainer">
+            <!-- Logs will appear here -->
+        </div>
+        <div class="controls">
+            <button class="btn" onclick="clearLogs()">Limpiar Pantalla</button>
+            <button class="btn" onclick="fetchLogs()">Actualizar</button>
+        </div>
+    </div>
+
+    <script>
+        const logContainer = document.getElementById('logContainer');
+        const autoScrollCheck = document.getElementById('autoScroll');
+        let lastTimestamp = null;
+
+        function formatTime(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleTimeString();
+        }
+
+        async function fetchLogs() {
+            try {
+                const response = await fetch('/api/logs');
+                const logs = await response.json();
+                
+                logContainer.innerHTML = '';
+                logs.forEach(log => {
+                    const entry = document.createElement('div');
+                    entry.className = 'log-entry';
+                    entry.innerHTML = `
+                        <span class="timestamp">[${formatTime(log.timestamp)}]</span>
+                        <span class="type type-${log.type}">${log.type}</span>
+                        <span class="message">${log.message}</span>
+                    `;
+                    logContainer.appendChild(entry);
+                });
+
+                if (autoScrollCheck.checked) {
+                    logContainer.scrollTop = logContainer.scrollHeight;
+                }
+            } catch (err) {
+                console.error('Error fetching logs:', err);
+            }
+        }
+
+        function clearLogs() {
+            logContainer.innerHTML = '';
+        }
+
+        // Poll every 2 seconds
+        setInterval(fetchLogs, 2000);
+        fetchLogs();
+    </script>
+</body>
+</html>

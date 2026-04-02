@@ -7,23 +7,21 @@ const { verifyToken, verifyClient } = require("../tokenManager/tokenVerify.js");
 
 let buildUniqueId = {};
 
-app.get("/fortnite/api/matchmaking/session/findPlayer/*", (req, res) => {
-    res.status(200).end();
-});
-
 app.get("/fortnite/api/game/v2/matchmakingservice/ticket/player/*", verifyToken, (req, res) => {
-    if (typeof req.query.bucketId != "string") return res.status(400).end();
-    if (req.query.bucketId.split(":").length != 4) return res.status(400).end();
+    const bucketId = req.query.bucketId || "";
+    if (!bucketId) return res.status(400).end();
 
-    buildUniqueId[req.user.accountId] = req.query.bucketId.split(":")[0];
+    const parts = bucketId.split(":");
+    buildUniqueId[req.user.accountId] = parts[0];
+
+    const matchmakerUrl = (process.env.MATCHMAKER_IP || "ws://api.leilos.qzz.io:8080").replace(/"/g, "").trim();
 
     res.json({
-        "serviceUrl": process.env.MATCHMAKER_IP || "ws://api.leilos.qzz.io:8080",
+        "serviceUrl": matchmakerUrl,
         "ticketType": "mms-player",
-        "payload": req.user.matchmakingId || "69=",
+        "payload": "69=",
         "signature": "account"
     });
-    res.end();
 });
 
 app.get("/fortnite/api/game/v2/matchmaking/account/:accountId/session/:sessionId", (req, res) => {
@@ -36,52 +34,51 @@ app.get("/fortnite/api/game/v2/matchmaking/account/:accountId/session/:sessionId
 
 app.get("/fortnite/api/matchmaking/session/:sessionId", verifyToken, (req, res) => {
     const bucketId = req.query.bucketId || "";
-    const rawPlaylist = bucketId.split(":")[3] || "Playlist_DefaultSolo";
+    const parts = bucketId.split(":");
+    const region = parts[2] || "EU";
+    const rawPlaylist = parts[3] || "Playlist_DefaultSolo";
     const playlist = functions.PlaylistNames(rawPlaylist);
-    const region = bucketId.split(":")[2] || "EU";
 
-    let gameServerInfo = {
-        serverAddress: "127.0.0.1",
-        serverPort: 7777,
-        playlist: playlist
-    }
+    let serverIp = "127.0.0.1";
+    let serverPort = 7777;
 
-    const EU_IP = process.env.EU_IP || "mad-eu.leilos.qzz.io:7777";
-    const NAE_IP = process.env.NAE_IP || "nae-.leilos.qzz.io:7777";
+    const EU_IP = (process.env.EU_IP || "mad-eu.leilos.qzz.io:7777").replace(/"/g, "").trim();
+    const NAE_IP = (process.env.NAE_IP || "nae-.leilos.qzz.io:7777").replace(/"/g, "").trim();
 
     if (region.toUpperCase() === "NAE" || region.toUpperCase() === "NA") {
-        const parts = NAE_IP.split(":");
-        gameServerInfo.serverAddress = parts[0];
-        gameServerInfo.serverPort = Number(parts[1]) || 7777;
+        const naeParts = NAE_IP.split(":");
+        serverIp = naeParts[0];
+        serverPort = Number(naeParts[1]) || 7777;
     } else {
-        const parts = EU_IP.split(":");
-        gameServerInfo.serverAddress = parts[0];
-        gameServerInfo.serverPort = Number(parts[1]) || 7777;
+        const euParts = EU_IP.split(":");
+        serverIp = euParts[0];
+        serverPort = Number(euParts[1]) || 7777;
     }
 
     res.json({
         "id": req.params.sessionId,
         "ownerId": functions.MakeID().replace(/-/ig, "").toUpperCase(),
-        "ownerName": "[DS]fortnite-liveeugcec1c2e30ubrcore0a-z8hj-1968",
-        "serverName": "[DS]fortnite-liveeugcec1c2e30ubrcore0a-z8hj-1968",
-        "serverAddress": gameServerInfo.serverAddress,
-        "serverPort": gameServerInfo.serverPort,
-        "maxPublicPlayers": 220,
-        "openPublicPlayers": 175,
+        "ownerName": "SnouweServer",
+        "serverName": "SnouweServer",
+        "serverAddress": serverIp,
+        "serverPort": serverPort,
+        "maxPublicPlayers": 100,
+        "openPublicPlayers": 100,
         "maxPrivatePlayers": 0,
         "openPrivatePlayers": 0,
         "attributes": {
           "REGION_s": region.toUpperCase(),
+          "GAMEMODE_s": "FORTATHENA",
           "ALLOWBROADCASTING_b": true,
-          "SUBREGION_s": "GB",
-          "DCID_s": "FORTNITE-LIVEEUGCEC1C2E30UBRCORE0A-14840880",
+          "SUBREGION_s": region.toUpperCase() === "NAE" ? "VA" : "GB",
+          "DCID_s": region.toUpperCase() === "NAE" ? "FORTNITE-LIVENAEC1C2E30UBRCORE0A-14840880" : "FORTNITE-LIVEEUGCEC1C2E30UBRCORE0A-14840880",
           "tenant_s": "Fortnite",
           "MATCHMAKINGPOOL_s": "Any",
           "STORMSHIELDDEFENSETYPE_i": 0,
           "HOTFIXVERSION_i": 0,
-          "PLAYLISTNAME_s": gameServerInfo.playlist,
+          "PLAYLISTNAME_s": playlist,
           "SESSIONKEY_s": functions.MakeID().replace(/-/ig, "").toUpperCase(),
-          "SESSION_ID_s": functions.MakeID().replace(/-/ig, "").toUpperCase(),
+          "SESSION_ID_s": req.params.sessionId,
           "TENANT_s": "Fortnite",
           "BEACONPORT_i": 15009,
           "MATCHMAKING_VERSION_i": 1,
@@ -89,10 +86,12 @@ app.get("/fortnite/api/matchmaking/session/:sessionId", verifyToken, (req, res) 
           "NEEDS_GS_JOIN_b": true,
           "IS_DEDICATED_b": true,
           "ALLOW_JOIN_IN_PROGRESS_b": false,
+          "BUILDID_i": 32112345,
+          "MAPNAME_s": "Athena",
         },
         "publicPlayers": [],
         "privatePlayers": [],
-        "totalPlayers": 45,
+        "totalPlayers": 1,
         "allowJoinInProgress": false,
         "shouldAdvertise": false,
         "isDedicated": false,
@@ -109,6 +108,13 @@ app.get("/fortnite/api/matchmaking/session/:sessionId", verifyToken, (req, res) 
 
 app.post("/fortnite/api/matchmaking/session/*/join", (req, res) => {
     res.status(204).end();
+});
+
+app.get("/fortnite/api/matchmaking/session/findPlayer/*", (req, res) => {
+    res.json({
+        "results": [],
+        "hasMore": false
+    });
 });
 
 app.post("/fortnite/api/matchmaking/session/matchMakingRequest", (req, res) => {

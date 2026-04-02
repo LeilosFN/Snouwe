@@ -7,7 +7,12 @@ const getDiscoveryMenu = () => JSON.parse(fs.readFileSync(path.join(__dirname, "
 const getLatestMenu = () => JSON.parse(fs.readFileSync(path.join(__dirname, "..", "responses", "discovery", "latest", "menu.json")).toString());
 
 app.post("/fortnite/api/game/v2/creative/discovery/surface/*", (req, res) => {
-    res.json(getDiscoveryMenu());
+    const discoveryMenu = getDiscoveryMenu();
+    res.json({
+        "Panels": discoveryMenu.Panels,
+        "TestCohorts": discoveryMenu.TestCohorts,
+        "ModeSets": discoveryMenu.ModeSets || {}
+    });
 });
 
 app.post("/api/v1/discovery/surface/*", (req, res) => {
@@ -16,14 +21,13 @@ app.post("/api/v1/discovery/surface/*", (req, res) => {
 
 app.post("/api/v2/discovery/surface/*", (req, res) => {
     res.json(getDiscoveryMenu());
-    
 });
 
 app.get("/fortnite/api/discovery/accessToken/*", (req, res) => {
     res.json({
         "branchName": req.params[0] || "unknown",
         "appId": "Fortnite",
-        "token": "leilos-discovery-token"
+        "token": "snouwe-discovery-token"
     });
 });
 
@@ -44,13 +48,19 @@ app.get("/links/api/fn/mnemonic/:playlist/related", (req, res) => {
 
 app.get("/links/api/fn/mnemonic/:playlist", (req, res) => {
     const playlist = req.params.playlist;
-    const latestMenu = getLatestMenu();
-    const linkData = latestMenu.find(i => i.mnemonic === playlist);
+    const ltmPath = path.join(__dirname, "..", "responses", "discovery", "latest", "ltms", `${playlist}.json`);
     
-    if (linkData) {
-        res.json(linkData);
+    if (fs.existsSync(ltmPath)) {
+        res.json(JSON.parse(fs.readFileSync(ltmPath).toString()));
     } else {
-        res.status(404).end();
+        const latestMenu = getLatestMenu();
+        const linkData = latestMenu.find(i => i.mnemonic === playlist);
+        
+        if (linkData) {
+            res.json(linkData);
+        } else {
+            res.status(404).end();
+        }
     }
 });
 
@@ -140,7 +150,7 @@ app.post("/api/v1/assets/Fortnite/*", (req, res) => {
                         "promotedAt": new Date().toISOString()
                     },
                     "assetData": {
-                        "AnalyticsId": "SNOUWE",
+                        "AnalyticsId": "SNOUWE_DISCOVERY",
                         "SurfaceName": "CreativeDiscoverySurface_Frontend",
                         "primaryAssetId": "FortCreativeDiscoverySurface:CreativeDiscoverySurface_Frontend",
                         "TestCohorts": discoveryMenu.TestCohorts

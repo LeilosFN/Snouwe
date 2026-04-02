@@ -10,47 +10,37 @@
         "favorite_override": "set_br_playlists",
         "play_history_override": "set_br_playlists",
         "alt_title": {
-            "de": "Solo",
-            "ru": "В одиночку",
-            "ko": "솔로",
-            "pt-BR": "Solo",
-            "en": "Arena",
-            "it": "Singolo",
-            "fr": "Solo",
-            "zh-CN": "",
-            "es": "Arena",
-            "es-MX": "Arena",
-            "zh": "",
-            "ar": "فردي",
-            "zh-Hant": "",
-            "ja": "ソロ",
-            "pl": "Solo",
-            "es-419": "Arena",
-            "tr": "Tekli"
+            "en": "ARENA SOLO",
+            "es": "ARENA SOLO",
+            "es-419": "ARENA SOLO"
         },
-        "image_url": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
+        "tagline": "ARENA SOLO",
+        "image_url": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
         "product_tag": "Product.BR.Build.Solo",
         "image_urls": {
-            "url_s": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-            "url_xs": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-            "url_m": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png",
-            "url": "https://api.leilos.qzz.io/images/gamemodes/png/Arena_Playlist.png"
+            "url_s": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
+            "url_xs": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
+            "url_m": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png",
+            "url": "https://api.leilos.qzz.io/images/gamemodes/Arena_Playlist.png"
         },
         "matchmaking": {
             "override_playlist": "playlist_showdownalt_solo"
         },
         "video_vuid": "taqdZkWyokbCyEFWld",
-        "title": "Arena"
+        "title": "Arena Solo",
+        "playlist_name": "ARENA SOLO",
+        "sub_title": "ARENA SOLO",
+        "tagline": "ARENA SOLO"
     },
-    "version": 95,
+    "version": 1,
     "linkCode": "playlist_showdownalt_solo",
     "active": true,
     "disabled": false,
     "lockStatus": "UNLOCKED",
     "lockStatusReason": "NONE",
     "isVisible": true,
-    "created": "2021-10-01T00:56:43.870Z",
-    "published": "2023-11-03T08:26:11.189Z",
+    "created": "2024-01-01T00:00:00.000Z",
+    "published": "2024-01-01T00:00:00.000Z",
     "descriptionTags": [],
     "moderationStatus": "Approved",
     "discoveryIntent": "PUBLIC"
