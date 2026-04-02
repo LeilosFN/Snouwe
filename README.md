@@ -27,6 +27,14 @@ Este backend es una versión personalizada y mejorada llamada **Snouwe**, desarr
 
 ---
 
+## 📣 Problemas detectados
+
+- Los modos aparecen pero despues de elegir el modo no apaprece el nombre del modo
+- Hay algunas skins que no aparecen aunque si se ponga el Athena a otro backend si aparecen todos
+- No te consigue meter en partida
+
+---
+
 ## 🚀 Instalación
 
 1. **Preparar el entorno:**
