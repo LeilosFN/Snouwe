@@ -69,7 +69,7 @@ El backend Snouwe está optimizado para el launcher **Mackna**.
 Este proyecto es una modificación llamada Snouwe.
 
 **IMPORTANTE:**
-- Este backend es mantenido por el equipo de Snouwe.
+- Este backend es mantenido por el equipo de Leilos.
 - Está **ESTRICTAMENTE PROHIBIDO** vender este código.
 - Su uso requiere mantener los créditos originales.
 
@@ -77,5 +77,5 @@ Este proyecto es una modificación llamada Snouwe.
 
 ## 📞 Contacto
 
-¡Gracias por apoyar a Snouwe!
+¡Gracias por apoyar a Leilos!
 
