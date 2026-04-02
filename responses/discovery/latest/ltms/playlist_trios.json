@@ -2,7 +2,7 @@
     "namespace": "fn",
     "accountId": "epic",
     "creatorName": "Epic",
-    "mnemonic": "playlist_defaultsolo",
+    "mnemonic": "playlist_trios",
     "linkType": "BR:Playlist",
     "metadata": {
         "age_rating_index": 0,
@@ -10,28 +10,26 @@
         "favorite_override": "set_br_playlists",
         "play_history_override": "set_br_playlists",
         "alt_title": {
-            "en": "Solo",
-            "es": "Solo",
-            "es-419": "Solo"
+            "en": "Trios",
+            "es": "Trios",
+            "es-419": "Trios"
         },
-        "tagline": "Solo",
-        "image_url": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
-        "product_tag": "Product.BR.Build.Solo",
+        "image_url": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+        "product_tag": "Product.BR.Build.Trios",
         "image_urls": {
-            "url_s": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
-            "url_xs": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
-            "url_m": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
-            "url": "https://api.leilos.qzz.io/images/gamemodes/solo.png"
+            "url_s": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+            "url_xs": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+            "url_m": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
+            "url": "https://api.leilos.qzz.io/images/gamemodes/trios.png"
         },
         "matchmaking": {
-            "override_playlist": "playlist_defaultsolo"
+            "override_playlist": "playlist_trios"
         },
         "video_vuid": "taqdZkWyokbCyEFWld",
-        "title": "Solo",
-        "playlist_name": "Solo"
+        "title": "Trio"
     },
     "version": 1,
-    "linkCode": "playlist_defaultsolo",
+    "linkCode": "playlist_trios",
     "active": true,
     "disabled": true,
     "lockStatus": "LOCKED",

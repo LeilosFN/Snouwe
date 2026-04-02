@@ -102,11 +102,11 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "EN SOLITARIO",
-                "es": "EN SOLITARIO",
-                "es-419": "EN SOLITARIO"
+                "en": "Solo",
+                "es": "Solo",
+                "es-419": "Solo"
             },
-            "tagline": "EN SOLITARIO",
+            "tagline": "Solo",
             "image_url": "https://api.leilos.qzz.io/images/gamemodes/solo.png",
             "product_tag": "Product.BR.Build.Solo",
             "image_urls": {
@@ -120,7 +120,7 @@
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
             "title": "Solo",
-            "playlist_name": "EN SOLITARIO"
+            "playlist_name": "Solo"
         },
         "version": 95,
         "active": true,
@@ -146,11 +146,11 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "EN DÚO",
-                "es": "EN DÚO",
-                "es-419": "EN DÚO"
+                "en": "Duo",
+                "es": "Duo",
+                "es-419": "Duo"
             },
-            "tagline": "EN DÚO",
+            "tagline": "Duo",
             "image_url": "https://api.leilos.qzz.io/images/gamemodes/duos.png",
             "product_tag": "Product.BR.Build.Duos",
             "image_urls": {
@@ -164,7 +164,7 @@
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
             "title": "Duo",
-            "playlist_name": "EN DÚO"
+            "playlist_name": "Duo"
         },
         "version": 1,
         "active": true,
@@ -182,7 +182,7 @@
         "namespace": "fn",
         "accountId": "epic",
         "creatorName": "Epic",
-        "mnemonic": "playlist_defaulttrio",
+        "mnemonic": "playlist_trios",
         "linkType": "BR:Playlist",
         "metadata": {
             "age_rating_index": 0,
@@ -190,11 +190,11 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "EN TRÍO",
-                "es": "EN TRÍO",
-                "es-419": "EN TRÍO"
+                "en": "Trios",
+                "es": "Trios",
+                "es-419": "Trios"
             },
-            "tagline": "EN TRÍO",
+            "tagline": "Trios",
             "image_url": "https://api.leilos.qzz.io/images/gamemodes/trios.png",
             "product_tag": "Product.BR.Build.Trios",
             "image_urls": {
@@ -204,11 +204,11 @@
                 "url": "https://api.leilos.qzz.io/images/gamemodes/trios.png"
             },
             "matchmaking": {
-                "override_playlist": "playlist_defaulttrio"
+                "override_playlist": "playlist_trios"
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
             "title": "Trios",
-            "playlist_name": "EN TRÍO"
+            "playlist_name": "Trios"
         },
         "version": 1,
         "active": true,
@@ -234,11 +234,11 @@
             "favorite_override": "set_br_playlists",
             "play_history_override": "set_br_playlists",
             "alt_title": {
-                "en": "EN ESCUADRÓN",
-                "es": "EN ESCUADRÓN",
-                "es-419": "EN ESCUADRÓN"
+                "en": "Squad",
+                "es": "Squad",
+                "es-419": "Squad"
             },
-            "tagline": "EN ESCUADRÓN",
+            "tagline": "Squad",
             "image_url": "https://api.leilos.qzz.io/images/gamemodes/squads.png",
             "product_tag": "Product.BR.Build.Squads",
             "image_urls": {
@@ -252,7 +252,7 @@
             },
             "video_vuid": "taqdZkWyokbCyEFWld",
             "title": "Squad",
-            "playlist_name": "EN ESCUADRÓN"
+            "playlist_name": "Squad"
         },
         "version": 1,
         "active": true,

@@ -10,9 +10,9 @@
         "favorite_override": "set_br_playlists",
         "play_history_override": "set_br_playlists",
         "alt_title": {
-            "en": "COPA TEST BACKEND",
-            "es": "COPA TEST BACKEND",
-            "es-419": "COPA TEST BACKEND"
+            "en": "TEST BACKEND",
+            "es": "TEST BACKEND",
+            "es-419": "TEST BACKEND"
         },
         "tagline": "MODOS & BACKEND",
         "image_url": "https://api.leilos.qzz.io/images/leilos/png/background_logo.png",
@@ -28,8 +28,8 @@
         },
         "video_vuid": "taqdZkWyokbCyEFWld",
         "title": "TEST BACKEND & MODES",
-        "playlist_name": "COPA TEST BACKEND",
-        "sub_title": "MODOS & BACKEND"
+        "playlist_name": "TEST BACKEND",
+        "sub_title": "TEST BACKEND AND MODES ON BACKEND"
     },
     "version": 1,
     "linkCode": "playlist_test_cup",

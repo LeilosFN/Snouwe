@@ -10,10 +10,11 @@
         "favorite_override": "set_br_playlists",
         "play_history_override": "set_br_playlists",
         "alt_title": {
-            "en": "EN DÚO",
-            "es": "EN DÚO",
-            "es-419": "EN DÚO"
+            "en": "Duo",
+            "es": "Duo",
+            "es-419": "Duo"
         },
+        "tagline": "Duo",
         "image_url": "https://api.leilos.qzz.io/images/gamemodes/duos.png",
         "product_tag": "Product.BR.Build.Duos",
         "image_urls": {

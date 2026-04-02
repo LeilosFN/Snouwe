@@ -82,7 +82,7 @@
             },
             {
               "lastVisited": null,
-              "linkCode": "playlist_defaulttrio",
+              "linkCode": "playlist_trios",
               "isFavorite": false,
               "globalCCU": 1,
               "lockStatus": "LOCKED",
@@ -133,7 +133,7 @@
               },
               {
                 "lastVisited": null,
-                "linkCode": "playlist_defaulttrio",
+                "linkCode": "playlist_trios",
                 "isFavorite": false,
                 "globalCCU": 1,
                 "lockStatus": "LOCKED",
@@ -276,7 +276,7 @@
                 },
                 {
                   "lastVisited": null,
-                  "linkCode": "playlist_defaulttrio",
+                  "linkCode": "playlist_trios",
                   "isFavorite": false,
                   "globalCCU": 1,
                   "lockStatus": "LOCKED",
